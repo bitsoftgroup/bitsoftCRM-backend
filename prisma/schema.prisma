@@ -1,0 +1,239 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+  reception
+  teacher
+}
+
+enum StudentStatus {
+  active
+  frozen
+  graduated
+  dropped
+  pending
+}
+
+enum BalanceType {
+  debt
+  credit
+}
+
+enum CourseLevel {
+  beginner
+  intermediate
+  pro
+}
+
+enum CourseStatus {
+  active
+  planned
+}
+
+enum PaymentMethod {
+  cash
+  card
+  transfer
+}
+
+enum PaymentStatus {
+  paid
+  partial
+  debt
+}
+
+enum CashCategory {
+  rent
+  utilities
+  salary
+  supplies
+  other
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role
+  teacherId String?  @unique
+  teacher   Teacher? @relation(fields: [teacherId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Student {
+  id                  String        @id @default(uuid())
+  name                String
+  phone               String?
+  parentPhone         String?
+  birthDate           DateTime?
+  status              StudentStatus @default(active)
+  dueDay              Int
+  interestCourseId    String?
+  interestCourse      Course?       @relation(fields: [interestCourseId], references: [id])
+  notes               String?
+  enrolledAt          DateTime      @default(now())
+  deleted             Boolean       @default(false)
+  deletedAt           DateTime?
+  deleteNote          String?
+  deleteBalanceType   BalanceType?
+  deleteBalanceAmount Decimal?      @db.Decimal(12, 2)
+
+  groups    StudentGroup[]
+  payments  Payment[]
+  contracts Contract[]
+
+  @@index([name])
+}
+
+model StudentGroup {
+  studentId String
+  groupId   String
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  group     Group   @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@id([studentId, groupId])
+}
+
+model Group {
+  id                     String   @id @default(uuid())
+  name                   String
+  courseId               String
+  course                 Course   @relation(fields: [courseId], references: [id])
+  teacherId              String
+  teacher                Teacher  @relation(fields: [teacherId], references: [id])
+  startDate              DateTime?
+  endDate                DateTime?
+  maxStudents            Int?
+  scheduleDays           String[]
+  scheduleTime           String?
+  scheduleDurationMinutes Int?
+  room                   String?
+  isActive               Boolean  @default(true)
+
+  students    StudentGroup[]
+  payments    Payment[]
+  attendance  Attendance[]
+  contracts   Contract[]
+
+  @@index([name])
+}
+
+model Course {
+  id           String       @id @default(uuid())
+  name         String
+  level        CourseLevel
+  price        Decimal      @db.Decimal(12, 2)
+  courseStatus CourseStatus @default(active)
+  isActive     Boolean      @default(true)
+
+  groups             Group[]
+  interestedStudents Student[]
+  contracts          Contract[]
+
+  @@index([name])
+}
+
+model Teacher {
+  id       String  @id @default(uuid())
+  name     String
+  phone    String?
+  isActive Boolean @default(true)
+
+  groups Group[]
+  user   User?
+
+  @@index([name])
+}
+
+model Payment {
+  id            String        @id @default(uuid())
+  studentId     String
+  student       Student       @relation(fields: [studentId], references: [id])
+  groupId       String?
+  group         Group?        @relation(fields: [groupId], references: [id])
+  amount        Decimal       @db.Decimal(12, 2)
+  month         String
+  dueDay        Int?
+  paidDate      DateTime?
+  paidAt        DateTime      @default(now())
+  method        PaymentMethod
+  status        PaymentStatus
+  discount      Decimal?      @db.Decimal(12, 2)
+  originalPrice Decimal?      @db.Decimal(12, 2)
+  notes         String?
+  deleted       Boolean       @default(false)
+
+  @@index([studentId, groupId, month])
+}
+
+model Attendance {
+  id        String   @id @default(uuid())
+  groupId   String
+  group     Group    @relation(fields: [groupId], references: [id])
+  date      DateTime
+  records   Json
+  updatedAt DateTime @updatedAt
+
+  @@unique([groupId, date])
+}
+
+model Contract {
+  id             String    @id @default(uuid())
+  studentId      String
+  student        Student   @relation(fields: [studentId], references: [id])
+  groupId        String?
+  group          Group?    @relation(fields: [groupId], references: [id])
+  courseId       String
+  course         Course    @relation(fields: [courseId], references: [id])
+  contractNumber String    @unique
+
+  address      String?
+  centerPhone  String?
+  centerName   String?
+  directorName String?
+  studentName  String?
+  birthDate    DateTime?
+  phone        String?
+  parentPhone  String?
+  courseName   String?
+  groupName    String?
+  price        Decimal?  @db.Decimal(12, 2)
+  graceDays    Int?
+  startDate    DateTime?
+  signDate     DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CashExpense {
+  id        String       @id @default(uuid())
+  category  CashCategory
+  amount    Decimal      @db.Decimal(12, 2)
+  date      DateTime
+  note      String?
+  createdAt DateTime     @default(now())
+  deleted   Boolean      @default(false)
+  deletedAt DateTime?
+}
+
+model Settings {
+  id                 String  @id @default("singleton")
+  discounts          Json
+  holidays           Json
+  rooms              String[]
+  contractInfo       Json
+  cashOpeningBalance Decimal @db.Decimal(12, 2) @default(0)
+}
+
+model ContractYearCounter {
+  year    Int @id
+  counter Int @default(0)
+}
