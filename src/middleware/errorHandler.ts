@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express'
-import { Prisma } from '@prisma/client'
+import { Prisma } from '../../generated/prisma/client.js'
 import { ZodError } from 'zod'
 
 export function errorHandler(err: unknown, req: Request, res: Response, _next: NextFunction) {

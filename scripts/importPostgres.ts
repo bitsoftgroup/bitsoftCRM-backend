@@ -1,12 +1,16 @@
 // One-time import of the JSON snapshot produced by scripts/exportFirebase.ts into
 // PostgreSQL via Prisma, preserving every relationship (AC-5). Firebase push IDs are
 // remapped to new UUIDs; the id maps below keep every foreign key pointed at the right row.
+// All imported rows belong to one EducationCenter (upserted by slug below), since this
+// script only ever migrates one existing customer's Firebase data at a time.
 import 'dotenv/config'
 import fs from 'node:fs'
 import path from 'node:path'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '../generated/prisma/client.js'
+import { PrismaPg } from '@prisma/adapter-pg'
 
-const prisma = new PrismaClient()
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
+const prisma = new PrismaClient({ adapter })
 
 type FirebaseMap = Record<string, Record<string, Record<string, unknown>>>
 
@@ -24,8 +28,25 @@ function getGroupIds(student: Record<string, unknown>): string[] {
   return []
 }
 
+/** Firebase export data is inconsistent (numeric timestamps, ISO strings, empty strings, typos). */
+function parseDate(value: unknown): Date | null {
+  if (value === null || value === undefined || value === '') return null
+  const date = new Date(value as string | number)
+  return Number.isNaN(date.getTime()) ? null : date
+}
+
 async function main() {
   const snapshot = loadSnapshot()
+
+  const centerSlug = process.env.IMPORT_CENTER_SLUG || 'bitsoft'
+  const centerName = process.env.IMPORT_CENTER_NAME || 'BitSoft'
+  const center = await prisma.educationCenter.upsert({
+    where: { slug: centerSlug },
+    create: { slug: centerSlug, name: centerName },
+    update: {},
+  })
+  const educationCenterId = center.id
+  console.log(`Importing into education center "${center.name}" (slug: ${centerSlug})`)
 
   const teacherIdMap = new Map<string, string>()
   const courseIdMap = new Map<string, string>()
@@ -34,7 +55,12 @@ async function main() {
 
   for (const [fbId, val] of Object.entries(snapshot.teachers ?? {})) {
     const teacher = await prisma.teacher.create({
-      data: { name: String(val.name ?? ''), phone: (val.phone as string) ?? null, isActive: val.isActive !== false },
+      data: {
+        educationCenterId,
+        name: String(val.name ?? ''),
+        phone: (val.phone as string) ?? null,
+        isActive: val.isActive !== false,
+      },
     })
     teacherIdMap.set(fbId, teacher.id)
   }
@@ -43,6 +69,7 @@ async function main() {
   for (const [fbId, val] of Object.entries(snapshot.courses ?? {})) {
     const course = await prisma.course.create({
       data: {
+        educationCenterId,
         name: String(val.name ?? ''),
         level: (val.level as 'beginner' | 'intermediate' | 'pro') ?? 'beginner',
         price: Number(val.price ?? 0),
@@ -64,6 +91,7 @@ async function main() {
     const schedule = (val.schedule as { days?: string[]; time?: string; durationMinutes?: number }) ?? {}
     const group = await prisma.group.create({
       data: {
+        educationCenterId,
         name: String(val.name ?? ''),
         courseId,
         teacherId,
@@ -83,16 +111,18 @@ async function main() {
     const interestCourseId = val.interestCourseId ? courseIdMap.get(val.interestCourseId as string) ?? null : null
     const student = await prisma.student.create({
       data: {
+        educationCenterId,
         name: String(val.name ?? ''),
         phone: (val.phone as string) ?? null,
         parentPhone: (val.parentPhone as string) ?? null,
+        birthDate: parseDate(val.birthDate),
         status: (val.status as 'active' | 'frozen' | 'graduated' | 'dropped' | 'pending') ?? 'active',
         dueDay: Number(val.dueDay ?? 1),
         interestCourseId,
         notes: (val.notes as string) ?? null,
-        enrolledAt: val.enrolledAt ? new Date(val.enrolledAt as number) : new Date(),
+        enrolledAt: parseDate(val.enrolledAt) ?? new Date(),
         deleted: Boolean(val.deleted),
-        deletedAt: val.deletedAt ? new Date(val.deletedAt as number) : null,
+        deletedAt: parseDate(val.deletedAt),
         deleteNote: (val.deleteNote as string) ?? null,
         deleteBalanceType: (val.deleteBalanceType as 'debt' | 'credit' | null) ?? null,
         deleteBalanceAmount: val.deleteBalanceAmount != null ? Number(val.deleteBalanceAmount) : null,
@@ -115,12 +145,13 @@ async function main() {
     const groupId = val.groupId ? groupIdMap.get(val.groupId as string) ?? null : null
     await prisma.payment.create({
       data: {
+        educationCenterId,
         studentId,
         groupId,
         amount: Number(val.amount ?? 0),
         month: String(val.month ?? ''),
         dueDay: val.dueDay != null ? Number(val.dueDay) : null,
-        paidAt: val.paidAt ? new Date(val.paidAt as number) : new Date(),
+        paidAt: parseDate(val.paidAt) ?? new Date(),
         method: (val.method as 'cash' | 'card' | 'transfer') ?? 'cash',
         status: (val.status as 'paid' | 'partial' | 'debt') ?? 'debt',
         discount: val.discount != null ? Number(val.discount) : null,
@@ -134,20 +165,26 @@ async function main() {
   console.log(`Imported ${paymentCount} payments`)
 
   let attendanceCount = 0
+  let attendanceSkipped = 0
   for (const [key, val] of Object.entries(snapshot.attendance ?? {})) {
     const fbGroupId = (val.groupId as string) ?? key.split('_')[0]
     const groupId = groupIdMap.get(fbGroupId)
-    if (!groupId || !val.date) continue
+    const date = parseDate(val.date)
+    if (!groupId || !date) {
+      attendanceSkipped++
+      continue
+    }
     await prisma.attendance.create({
       data: {
+        educationCenterId,
         groupId,
-        date: new Date(val.date as string),
+        date,
         records: (val.records as Record<string, string>) ?? {},
       },
     })
     attendanceCount++
   }
-  console.log(`Imported ${attendanceCount} attendance records`)
+  console.log(`Imported ${attendanceCount} attendance records${attendanceSkipped ? ` (skipped ${attendanceSkipped}: missing group or unparseable date)` : ''}`)
 
   let contractCount = 0
   const maxContractByYear = new Map<number, number>()
@@ -159,6 +196,7 @@ async function main() {
     const contractNumber = String(val.contractNumber ?? '')
     await prisma.contract.create({
       data: {
+        educationCenterId,
         studentId,
         groupId,
         courseId,
@@ -166,17 +204,19 @@ async function main() {
         address: (val.address as string) ?? null,
         centerPhone: (val.centerPhone as string) ?? null,
         centerName: (val.centerName as string) ?? null,
+        centerLogoUrl: center.logoUrl ?? null,
         directorName: (val.directorName as string) ?? null,
         studentName: (val.studentName as string) ?? null,
+        birthDate: parseDate(val.birthDate),
         phone: (val.phone as string) ?? null,
         parentPhone: (val.parentPhone as string) ?? null,
         courseName: (val.courseName as string) ?? null,
         groupName: (val.groupName as string) ?? null,
         price: val.price != null ? Number(val.price) : null,
         graceDays: val.graceDays != null ? Number(val.graceDays) : null,
-        startDate: val.startDate ? new Date(val.startDate as string) : null,
-        signDate: val.signDate ? new Date(val.signDate as string) : null,
-        createdAt: val.createdAt ? new Date(val.createdAt as number) : new Date(),
+        startDate: parseDate(val.startDate),
+        signDate: parseDate(val.signDate),
+        createdAt: parseDate(val.createdAt) ?? new Date(),
       },
     })
     contractCount++
@@ -188,8 +228,8 @@ async function main() {
   }
   for (const [year, counter] of maxContractByYear) {
     await prisma.contractYearCounter.upsert({
-      where: { year },
-      create: { year, counter },
+      where: { educationCenterId_year: { educationCenterId, year } },
+      create: { educationCenterId, year, counter },
       update: { counter },
     })
   }
@@ -197,15 +237,17 @@ async function main() {
 
   let expenseCount = 0
   for (const [, val] of Object.entries(snapshot.cashExpenses ?? {})) {
+    const createdAt = parseDate(val.createdAt) ?? new Date()
     await prisma.cashExpense.create({
       data: {
+        educationCenterId,
         category: (val.category as 'rent' | 'utilities' | 'salary' | 'supplies' | 'other') ?? 'other',
         amount: Number(val.amount ?? 0),
-        date: val.date ? new Date(val.date as string) : new Date(val.createdAt as number),
+        date: parseDate(val.date) ?? createdAt,
         note: (val.note as string) ?? null,
-        createdAt: val.createdAt ? new Date(val.createdAt as number) : new Date(),
+        createdAt,
         deleted: Boolean(val.deleted),
-        deletedAt: val.deletedAt ? new Date(val.deletedAt as number) : null,
+        deletedAt: parseDate(val.deletedAt),
       },
     })
     expenseCount++
@@ -214,9 +256,9 @@ async function main() {
 
   const settings = (snapshot.settings ?? {}) as Record<string, unknown>
   await prisma.settings.upsert({
-    where: { id: 'singleton' },
+    where: { educationCenterId },
     create: {
-      id: 'singleton',
+      educationCenterId,
       discounts: (settings.discounts as object) ?? { 2: 10, 3: 15, 4: 20 },
       holidays: (settings.holidays as object) ?? [],
       rooms: (settings.rooms as string[]) ?? [],

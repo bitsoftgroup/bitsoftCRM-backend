@@ -1,10 +1,10 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 enum Role {
@@ -57,39 +57,107 @@ enum CashCategory {
   other
 }
 
-model User {
+/// A customer of the product: one education center. Every tenant-scoped row
+/// below belongs to exactly one EducationCenter via educationCenterId.
+model EducationCenter {
+  id              String   @id @default(uuid())
+  name            String
+  slug            String   @unique
+  logoUrl         String?
+  contactEmail    String?
+  contactPhone    String?
+  ownerName       String?
+  ownerPhone      String?
+  ownerEmail      String?
+  /// sha256 hex digest of the per-center tenant token sent as X-Tenant-Token.
+  /// The plaintext token is shown once at creation/regeneration and never stored.
+  tenantTokenHash String?  @unique
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+
+  users                User[]
+  students             Student[]
+  teachers             Teacher[]
+  courses              Course[]
+  groups               Group[]
+  payments             Payment[]
+  attendance           Attendance[]
+  contracts            Contract[]
+  cashExpenses         CashExpense[]
+  settings             Settings?
+  contractYearCounters ContractYearCounter[]
+  exportJobs           ExportJob[]
+}
+
+enum ExportJobStatus {
+  pending
+  building
+  done
+  failed
+}
+
+/// Tracks one background build of this center's branded desktop .exe.
+model ExportJob {
+  id                String          @id @default(uuid())
+  educationCenterId String
+  educationCenter   EducationCenter @relation(fields: [educationCenterId], references: [id])
+  status            ExportJobStatus @default(pending)
+  filePath          String?
+  error             String?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  @@index([educationCenterId, createdAt])
+}
+
+/// Vendor-level login, unrelated to any single education center. Manages the
+/// EducationCenter registry from the superadmin app.
+model SuperAdmin {
   id        String   @id @default(uuid())
   email     String   @unique
   password  String
-  role      Role
-  teacherId String?  @unique
-  teacher   Teacher? @relation(fields: [teacherId], references: [id])
   createdAt DateTime @default(now())
 }
 
+model User {
+  id                String          @id @default(uuid())
+  educationCenterId String
+  educationCenter   EducationCenter @relation(fields: [educationCenterId], references: [id])
+  email             String
+  password          String
+  role              Role
+  teacherId         String?         @unique
+  teacher           Teacher?        @relation(fields: [teacherId], references: [id])
+  createdAt         DateTime        @default(now())
+
+  @@unique([educationCenterId, email])
+}
+
 model Student {
-  id                  String        @id @default(uuid())
+  id                  String          @id @default(uuid())
+  educationCenterId   String
+  educationCenter     EducationCenter @relation(fields: [educationCenterId], references: [id])
   name                String
   phone               String?
   parentPhone         String?
   birthDate           DateTime?
-  status              StudentStatus @default(active)
+  status              StudentStatus   @default(active)
   dueDay              Int
   interestCourseId    String?
-  interestCourse      Course?       @relation(fields: [interestCourseId], references: [id])
+  interestCourse      Course?         @relation(fields: [interestCourseId], references: [id])
   notes               String?
-  enrolledAt          DateTime      @default(now())
-  deleted             Boolean       @default(false)
+  enrolledAt          DateTime        @default(now())
+  deleted             Boolean         @default(false)
   deletedAt           DateTime?
   deleteNote          String?
   deleteBalanceType   BalanceType?
-  deleteBalanceAmount Decimal?      @db.Decimal(12, 2)
+  deleteBalanceAmount Decimal?        @db.Decimal(12, 2)
 
   groups    StudentGroup[]
   payments  Payment[]
   contracts Contract[]
 
-  @@index([name])
+  @@index([educationCenterId, name])
 }
 
 model StudentGroup {
@@ -102,101 +170,114 @@ model StudentGroup {
 }
 
 model Group {
-  id                     String   @id @default(uuid())
-  name                   String
-  courseId               String
-  course                 Course   @relation(fields: [courseId], references: [id])
-  teacherId              String
-  teacher                Teacher  @relation(fields: [teacherId], references: [id])
-  startDate              DateTime?
-  endDate                DateTime?
-  maxStudents            Int?
-  scheduleDays           String[]
-  scheduleTime           String?
+  id                      String          @id @default(uuid())
+  educationCenterId       String
+  educationCenter         EducationCenter @relation(fields: [educationCenterId], references: [id])
+  name                    String
+  courseId                String
+  course                  Course          @relation(fields: [courseId], references: [id])
+  teacherId               String
+  teacher                 Teacher         @relation(fields: [teacherId], references: [id])
+  startDate               DateTime?
+  endDate                 DateTime?
+  maxStudents             Int?
+  scheduleDays            String[]
+  scheduleTime            String?
   scheduleDurationMinutes Int?
-  room                   String?
-  isActive               Boolean  @default(true)
+  room                    String?
+  isActive                Boolean         @default(true)
 
-  students    StudentGroup[]
-  payments    Payment[]
-  attendance  Attendance[]
-  contracts   Contract[]
+  students   StudentGroup[]
+  payments   Payment[]
+  attendance Attendance[]
+  contracts  Contract[]
 
-  @@index([name])
+  @@index([educationCenterId, name])
 }
 
 model Course {
-  id           String       @id @default(uuid())
-  name         String
-  level        CourseLevel
-  price        Decimal      @db.Decimal(12, 2)
-  courseStatus CourseStatus @default(active)
-  isActive     Boolean      @default(true)
+  id                String          @id @default(uuid())
+  educationCenterId String
+  educationCenter   EducationCenter @relation(fields: [educationCenterId], references: [id])
+  name              String
+  level             CourseLevel
+  price             Decimal         @db.Decimal(12, 2)
+  courseStatus      CourseStatus    @default(active)
+  isActive          Boolean         @default(true)
 
   groups             Group[]
   interestedStudents Student[]
   contracts          Contract[]
 
-  @@index([name])
+  @@index([educationCenterId, name])
 }
 
 model Teacher {
-  id       String  @id @default(uuid())
-  name     String
-  phone    String?
-  isActive Boolean @default(true)
+  id                String          @id @default(uuid())
+  educationCenterId String
+  educationCenter   EducationCenter @relation(fields: [educationCenterId], references: [id])
+  name              String
+  phone             String?
+  isActive          Boolean         @default(true)
 
   groups Group[]
   user   User?
 
-  @@index([name])
+  @@index([educationCenterId, name])
 }
 
 model Payment {
-  id            String        @id @default(uuid())
-  studentId     String
-  student       Student       @relation(fields: [studentId], references: [id])
-  groupId       String?
-  group         Group?        @relation(fields: [groupId], references: [id])
-  amount        Decimal       @db.Decimal(12, 2)
-  month         String
-  dueDay        Int?
-  paidDate      DateTime?
-  paidAt        DateTime      @default(now())
-  method        PaymentMethod
-  status        PaymentStatus
-  discount      Decimal?      @db.Decimal(12, 2)
-  originalPrice Decimal?      @db.Decimal(12, 2)
-  notes         String?
-  deleted       Boolean       @default(false)
+  id                String          @id @default(uuid())
+  educationCenterId String
+  educationCenter   EducationCenter @relation(fields: [educationCenterId], references: [id])
+  studentId         String
+  student           Student         @relation(fields: [studentId], references: [id])
+  groupId           String?
+  group             Group?          @relation(fields: [groupId], references: [id])
+  amount            Decimal         @db.Decimal(12, 2)
+  month             String
+  dueDay            Int?
+  paidDate          DateTime?
+  paidAt            DateTime        @default(now())
+  method            PaymentMethod
+  status            PaymentStatus
+  discount          Decimal?        @db.Decimal(12, 2)
+  originalPrice     Decimal?        @db.Decimal(12, 2)
+  notes             String?
+  deleted           Boolean         @default(false)
 
-  @@index([studentId, groupId, month])
+  @@index([educationCenterId, studentId, groupId, month])
 }
 
 model Attendance {
-  id        String   @id @default(uuid())
-  groupId   String
-  group     Group    @relation(fields: [groupId], references: [id])
-  date      DateTime
-  records   Json
-  updatedAt DateTime @updatedAt
+  id                String          @id @default(uuid())
+  educationCenterId String
+  educationCenter   EducationCenter @relation(fields: [educationCenterId], references: [id])
+  groupId           String
+  group             Group           @relation(fields: [groupId], references: [id])
+  date              DateTime
+  records           Json
+  updatedAt         DateTime        @updatedAt
 
   @@unique([groupId, date])
 }
 
 model Contract {
-  id             String    @id @default(uuid())
-  studentId      String
-  student        Student   @relation(fields: [studentId], references: [id])
-  groupId        String?
-  group          Group?    @relation(fields: [groupId], references: [id])
-  courseId       String
-  course         Course    @relation(fields: [courseId], references: [id])
-  contractNumber String    @unique
+  id                String          @id @default(uuid())
+  educationCenterId String
+  educationCenter   EducationCenter @relation(fields: [educationCenterId], references: [id])
+  studentId         String
+  student           Student         @relation(fields: [studentId], references: [id])
+  groupId           String?
+  group             Group?          @relation(fields: [groupId], references: [id])
+  courseId          String
+  course            Course          @relation(fields: [courseId], references: [id])
+  contractNumber    String
 
   address      String?
   centerPhone  String?
   centerName   String?
+  centerLogoUrl String?
   directorName String?
   studentName  String?
   birthDate    DateTime?
@@ -211,29 +292,38 @@ model Contract {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([educationCenterId, contractNumber])
 }
 
 model CashExpense {
-  id        String       @id @default(uuid())
-  category  CashCategory
-  amount    Decimal      @db.Decimal(12, 2)
-  date      DateTime
-  note      String?
-  createdAt DateTime     @default(now())
-  deleted   Boolean      @default(false)
-  deletedAt DateTime?
+  id                String          @id @default(uuid())
+  educationCenterId String
+  educationCenter   EducationCenter @relation(fields: [educationCenterId], references: [id])
+  category          CashCategory
+  amount            Decimal         @db.Decimal(12, 2)
+  date              DateTime
+  note              String?
+  createdAt         DateTime        @default(now())
+  deleted           Boolean         @default(false)
+  deletedAt         DateTime?
 }
 
 model Settings {
-  id                 String  @id @default("singleton")
+  educationCenterId  String          @id
+  educationCenter    EducationCenter @relation(fields: [educationCenterId], references: [id])
   discounts          Json
   holidays           Json
   rooms              String[]
   contractInfo       Json
-  cashOpeningBalance Decimal @db.Decimal(12, 2) @default(0)
+  cashOpeningBalance Decimal         @default(0) @db.Decimal(12, 2)
 }
 
 model ContractYearCounter {
-  year    Int @id
-  counter Int @default(0)
+  educationCenterId String
+  educationCenter   EducationCenter @relation(fields: [educationCenterId], references: [id])
+  year              Int
+  counter           Int             @default(0)
+
+  @@id([educationCenterId, year])
 }

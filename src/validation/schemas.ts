@@ -1,9 +1,38 @@
 import { z } from 'zod'
 
 export const loginSchema = z.object({
+  // Optional: only used as a fallback when no X-Tenant-Token header is sent
+  // (the legacy browser-frontend path). The desktop app's tenant token takes precedence.
+  centerSlug: z.string().min(1).optional(),
   email: z.string().email(),
   password: z.string().min(1),
 })
+
+export const superAdminLoginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(1),
+})
+
+export const educationCenterCreateSchema = z.object({
+  name: z.string().min(1),
+  slug: z
+    .string()
+    .min(1)
+    .regex(/^[a-z0-9-]+$/, 'Lowercase letters, numbers, and hyphens only'),
+  logoUrl: z.string().url().optional(),
+  contactEmail: z.string().email().optional(),
+  contactPhone: z.string().optional(),
+  // Owner identity is asked for at creation because it is what gets printed on
+  // this center's Contracts (as the signing director/owner name).
+  ownerName: z.string().min(1),
+  ownerPhone: z.string().optional(),
+  ownerEmail: z.string().email().optional(),
+  // Required only on create: this center's first login (role 'admin'). Without it,
+  // a newly created center has no User row and nobody can ever log into it.
+  adminEmail: z.string().email(),
+  adminPassword: z.string().min(1),
+})
+export const educationCenterUpdateSchema = educationCenterCreateSchema.partial()
 
 export const studentCreateSchema = z.object({
   name: z.string().min(1),

@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client'
+import { Prisma } from '../../generated/prisma/client.js'
 import { prisma } from '../prisma.js'
 
 /** Mirrors frontend/src/services/discountService.js: percent keyed by active-group count. */
@@ -83,12 +83,12 @@ export function todayLocalMonth(): string {
  * the student's active-group count; a missing payment record for the current month
  * counts as full debt, 'partial' counts the remainder, 'paid' counts nothing.
  */
-export async function computeStudentDebtStatus(studentId: string) {
-  const student = await prisma.student.findUniqueOrThrow({
-    where: { id: studentId },
+export async function computeStudentDebtStatus(studentId: string, educationCenterId: string) {
+  const student = await prisma.student.findFirstOrThrow({
+    where: { id: studentId, educationCenterId },
     include: { groups: { include: { group: { include: { course: true } } } } },
   })
-  const settings = await prisma.settings.findUnique({ where: { id: 'singleton' } })
+  const settings = await prisma.settings.findUnique({ where: { educationCenterId } })
   const discounts = (settings?.discounts as Record<string, number>) ?? {}
   const month = todayLocalMonth()
 
@@ -103,7 +103,7 @@ export async function computeStudentDebtStatus(studentId: string) {
     const price = calcDiscountedPrice(Number(course.price), discountPercent)
     totalPrice += price
     const payment = await prisma.payment.findFirst({
-      where: { studentId, groupId: membership.groupId, month, deleted: false },
+      where: { studentId, groupId: membership.groupId, month, deleted: false, educationCenterId },
     })
     if (!payment) continue
     if (payment.status === 'paid') totalPaid += Number(payment.originalPrice ?? price)
@@ -121,7 +121,7 @@ export async function computeStudentDebtStatus(studentId: string) {
  * Atomic per-year contract numbering (AC-4): uses a serializable transaction with an
  * upsert against a per-year counter row, so two concurrent requests never collide.
  */
-export async function nextContractNumber(): Promise<string> {
+export async function nextContractNumber(educationCenterId: string): Promise<string> {
   const year = new Date().getFullYear()
   const maxAttempts = 15
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -129,8 +129,8 @@ export async function nextContractNumber(): Promise<string> {
       const result = await prisma.$transaction(
         async (tx) => {
           const row = await tx.contractYearCounter.upsert({
-            where: { year },
-            create: { year, counter: 1 },
+            where: { educationCenterId_year: { educationCenterId, year } },
+            create: { educationCenterId, year, counter: 1 },
             update: { counter: { increment: 1 } },
           })
           return row.counter

@@ -25,6 +25,7 @@ Express + TypeScript API backed by PostgreSQL via Prisma. Implements
 ## API contract (for Track B / `frontend/src/services/*.js`)
 
 General rules that apply to every resource below:
+
 - Money and price fields (`amount`, `price`, `discount`, `originalPrice`, `deleteBalanceAmount`, `cashOpeningBalance`) are Prisma `Decimal` columns and are serialized as **strings**, e.g. `"300"`, not the number `300`. Parse with `Number(...)` on the frontend before doing math or formatting.
 - All `id` fields are UUID strings, generated server-side. Never send an `id` in a create body.
 - Dates/timestamps (`enrolledAt`, `paidAt`, `createdAt`, `updatedAt`, `deletedAt`, `birthDate`, `date`, `startDate`, `endDate`, `signDate`) are ISO 8601 strings, e.g. `"2026-09-17T07:50:36.515Z"`.
@@ -71,7 +72,7 @@ General rules that apply to every resource below:
 
 - `Contract` shape: `{ id, studentId, groupId, courseId, contractNumber, address, centerPhone, centerName, directorName, studentName, birthDate, phone, parentPhone, courseName, groupName, price, graceDays, startDate, signDate, createdAt, updatedAt }`.
 - `GET /contracts`, `GET /contracts/:id`, `POST /contracts` (body: `studentId`, `courseId` required, rest optional snapshot fields; `contractNumber` is always assigned server-side, atomically, per AC-4 — never send it), `PATCH /contracts/:id`, `DELETE /contracts/:id` (hard delete, matches today — no restore).
-- `GET /contracts/next-number` → `{ contractNumber: "N/YYYY" }`. This is a **peek**, not a reservation: it shows what the next number *would* be right now, but calling `POST /contracts` is what actually assigns and consumes it. Two clients peeking at the same time can see the same number; only the `POST` is atomic. Use this purely for UI preview text, not as a value you send back to the server.
+- `GET /contracts/next-number` → `{ contractNumber: "N/YYYY" }`. This is a **peek**, not a reservation: it shows what the next number _would_ be right now, but calling `POST /contracts` is what actually assigns and consumes it. Two clients peeking at the same time can see the same number; only the `POST` is atomic. Use this purely for UI preview text, not as a value you send back to the server.
 
 ### Cash expenses
 
@@ -81,6 +82,7 @@ General rules that apply to every resource below:
 ### Settings
 
 All admin only, all `GET`/`PUT` (full overwrite):
+
 - `GET/PUT /settings/discounts` → body/response is the raw map, e.g. `{ "2": 10, "3": 15, "4": 20 }` (**keys are strings**, not numbers — `JSON.stringify` on the frontend already does this, but read them back with `Number(key)` when comparing).
 - `GET/PUT /settings/holidays` → array of `{ from: "YYYY-MM-DD", to: "YYYY-MM-DD" }`.
 - `GET/PUT /settings/rooms` → array of strings.

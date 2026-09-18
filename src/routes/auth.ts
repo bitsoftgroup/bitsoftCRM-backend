@@ -11,13 +11,34 @@ const router = Router()
 router.post(
   '/login',
   asyncHandler(async (req, res) => {
-    const { email, password } = loginSchema.parse(req.body)
-    const user = await prisma.user.findUnique({ where: { email } })
+    const { centerSlug, email, password } = loginSchema.parse(req.body)
+    // Prefer the center identified by X-Tenant-Token (the desktop app's path). If the
+    // master token was sent without picking a center, that's a caller error. Otherwise
+    // (no tenant token at all) fall back to centerSlug for the legacy browser frontend.
+    if (req.masterAccess && !req.tenantCenterId) {
+      return res.status(400).json({ error: 'X-Education-Center-Id header required when using the master tenant token' })
+    }
+    const center = req.tenantCenterId
+      ? await prisma.educationCenter.findUnique({ where: { id: req.tenantCenterId } })
+      : centerSlug
+        ? await prisma.educationCenter.findUnique({ where: { slug: centerSlug } })
+        : null
+    if (!center || !center.isActive) {
+      return res.status(401).json({ error: 'Invalid credentials' })
+    }
+    const user = await prisma.user.findUnique({
+      where: { educationCenterId_email: { educationCenterId: center.id, email } },
+    })
     if (!user || user.password !== password) {
       return res.status(401).json({ error: 'Invalid credentials' })
     }
-    const token = signToken({ userId: user.id, role: user.role, teacherId: user.teacherId })
-    res.json({ token, role: user.role, teacherId: user.teacherId })
+    const token = signToken({
+      userId: user.id,
+      educationCenterId: center.id,
+      role: user.role,
+      teacherId: user.teacherId,
+    })
+    res.json({ token, role: user.role, teacherId: user.teacherId, educationCenter: { id: center.id, name: center.name, logoUrl: center.logoUrl } })
   }),
 )
 

@@ -12,10 +12,11 @@ router.get(
   '/todays-classes',
   asyncHandler(async (req, res) => {
     const today = DAY_NAMES[new Date().getDay()]
+    const educationCenterId = req.user!.educationCenterId
     const where =
       req.user!.role === 'teacher'
-        ? { teacherId: req.user!.teacherId!, isActive: true, scheduleDays: { has: today } }
-        : { isActive: true, scheduleDays: { has: today } }
+        ? { educationCenterId, teacherId: req.user!.teacherId!, isActive: true, scheduleDays: { has: today } }
+        : { educationCenterId, isActive: true, scheduleDays: { has: today } }
     const count = await prisma.group.count({ where })
     res.json({ count })
   }),
