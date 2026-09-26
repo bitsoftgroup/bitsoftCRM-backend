@@ -8,7 +8,10 @@ import { env } from '../env.js'
 import { authenticateSuperAdmin, signSuperAdminToken } from '../middleware/auth.js'
 import { asyncHandler } from '../lib/asyncHandler.js'
 import { generateTenantToken } from '../lib/tenantToken.js'
+import { HttpError } from '../lib/httpError.js'
 import { enqueueExportJob, EXPORTS_DIR } from '../lib/desktopExport.js'
+import recordsRoutes from './superadminRecords.js'
+import analyticsRoutes from './superadminAnalytics.js'
 import {
   superAdminLoginSchema,
   educationCenterCreateSchema,
@@ -39,7 +42,7 @@ const upload = multer({
   }),
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (_req, file, cb) => {
-    if (!file.mimetype.startsWith('image/')) return cb(new Error('Only image uploads are allowed'))
+    if (!file.mimetype.startsWith('image/')) return cb(new HttpError(400, 'Only image uploads are allowed'))
     cb(null, true)
   },
 })
@@ -60,6 +63,8 @@ router.post(
 )
 
 router.use(authenticateSuperAdmin)
+router.use(recordsRoutes)
+router.use(analyticsRoutes)
 
 router.get(
   '/education-centers',

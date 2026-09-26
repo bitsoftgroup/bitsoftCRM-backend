@@ -12,6 +12,9 @@ router.get(
   asyncHandler(async (req, res) => {
     const educationCenterId = req.user!.educationCenterId
     const includeInactive = req.query.includeDeleted === 'true' || req.query.deleted === 'true'
+    if (req.user!.role === 'teacher' && !req.user!.teacherId) {
+      return res.status(403).json({ error: 'No teacher record linked to this account' })
+    }
     const where =
       req.user!.role === 'teacher'
         ? { educationCenterId, teacherId: req.user!.teacherId! }

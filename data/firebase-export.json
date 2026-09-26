@@ -64,10 +64,21 @@
       "birthDate": "2011-03-03",
       "dueDay": 12,
       "enrolledAt": 1782152010055,
+      "groupHistory": {
+        "-P2R20imoSpH8xgIaQw7": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OvkosbNtiaoWPxKxzYO",
+          "fromGroupName": "BS-DE-03",
+          "groupId": "-Ovkl4d3vP2bO7mU03UA",
+          "groupName": "BS-DE-02",
+          "ts": 1790398175871,
+          "type": "transferred"
+        }
+      },
       "groupId": "-OvkZByvUBPat4zv0IQr",
       "groupIds": [
         "-OvkZByvUBPat4zv0IQr",
-        "-OvkosbNtiaoWPxKxzYO"
+        "-Ovkl4d3vP2bO7mU03UA"
       ],
       "name": "Фаришта Точибоева",
       "parentPhone": "987721545",
@@ -117,10 +128,7 @@
       "birthDate": "2011-02-20",
       "dueDay": 13,
       "enrolledAt": 1782153939045,
-      "groupId": "-OvkeUK0mmVgioEvb47b",
-      "groupIds": [
-        "-OvkeUK0mmVgioEvb47b"
-      ],
+      "groupId": "",
       "name": "Насруллоев Сардор",
       "parentPhone": "987066281",
       "phone": "787066281",
@@ -128,12 +136,15 @@
     },
     "-OvkdqfeSad9BXxQ8Jeh": {
       "birthDate": "2011-09-19",
+      "deleted": true,
+      "deletedAt": 1790399495633,
       "dueDay": 3,
       "enrolledAt": 1782153964286,
       "groupId": "-OvkeUK0mmVgioEvb47b",
       "groupIds": [
         "-OvkeUK0mmVgioEvb47b"
       ],
+      "leftDate": "2026-09-26",
       "name": "Кодиров Отачон",
       "parentPhone": "",
       "phone": "071837117",
@@ -156,9 +167,20 @@
       "birthDate": "2013-09-22",
       "dueDay": 5,
       "enrolledAt": 1782154023481,
-      "groupId": "-OvkeUK0mmVgioEvb47b",
+      "groupHistory": {
+        "-P2Ru5bEcBYQUG-yGQPA": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OvkeUK0mmVgioEvb47b",
+          "fromGroupName": "BS-FE-02",
+          "groupId": "-P2RtxLdRLKVmga3FWMG",
+          "groupName": "BS-FE-06 ertalab ",
+          "ts": 1790412611953,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtxLdRLKVmga3FWMG",
       "groupIds": [
-        "-OvkeUK0mmVgioEvb47b"
+        "-P2RtxLdRLKVmga3FWMG"
       ],
       "name": "Мамуров Шохрух",
       "parentPhone": "",
@@ -600,9 +622,20 @@
       "birthDate": "2012-08-18",
       "dueDay": 15,
       "enrolledAt": 1782156966619,
-      "groupId": "-OvkosbNtiaoWPxKxzYO",
+      "groupHistory": {
+        "-P2R2-Kois5jmgX1UiKC": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OvkosbNtiaoWPxKxzYO",
+          "fromGroupName": "BS-DE-03",
+          "groupId": "-Ovkl4d3vP2bO7mU03UA",
+          "groupName": "BS-DE-02",
+          "ts": 1790398170177,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-Ovkl4d3vP2bO7mU03UA",
       "groupIds": [
-        "-OvkosbNtiaoWPxKxzYO"
+        "-Ovkl4d3vP2bO7mU03UA"
       ],
       "name": "Собирова Паризода",
       "parentPhone": "928521617",
@@ -611,12 +644,15 @@
     },
     "-OvmcnEoeDPfXLMxwv-n": {
       "birthDate": "2010-12-04",
+      "deleted": true,
+      "deletedAt": 1790398808342,
       "dueDay": 24,
       "enrolledAt": 1782187242603,
       "groupId": "-OvkeUK0mmVgioEvb47b",
       "groupIds": [
         "-OvkeUK0mmVgioEvb47b"
       ],
+      "leftDate": "2026-09-26",
       "name": "Солиев Аскарчон",
       "parentPhone": "",
       "phone": "004887102",
@@ -736,9 +772,20 @@
     "-OvnCa_jRtdKLO6NLoS_": {
       "birthDate": "",
       "enrolledAt": 1782196890620,
-      "groupId": "-OzVX2FWcS3T3ZJKm13x",
+      "groupHistory": {
+        "-P2RwP1_zt2c0HVhQb7Q": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OzVX2FWcS3T3ZJKm13x",
+          "fromGroupName": "BS-FE-08",
+          "groupId": "-P2RtxLdRLKVmga3FWMG",
+          "groupName": "BS-FE-06 ertalab ",
+          "ts": 1790413215815,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtxLdRLKVmga3FWMG",
       "groupIds": [
-        "-OzVX2FWcS3T3ZJKm13x"
+        "-P2RtxLdRLKVmga3FWMG"
       ],
       "name": "Садуллоев Асилбек",
       "parentPhone": "987071939",
@@ -819,9 +866,20 @@
       "birthDate": "2013-09-13",
       "dueDay": 1,
       "enrolledAt": 1782294807795,
-      "groupId": "-Ovt0j98PoVsOKdZqwEp",
+      "groupHistory": {
+        "-P2RuTIU24IiT2mQbksS": {
+          "date": "2026-09-26",
+          "fromGroupId": "-Ovt0j98PoVsOKdZqwEp",
+          "fromGroupName": "BS-FE-05",
+          "groupId": "-P2RtoOxKs3k14ZKdUqJ",
+          "groupName": "BS-FE-05 ertalab",
+          "ts": 1790412708993,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtoOxKs3k14ZKdUqJ",
       "groupIds": [
-        "-Ovt0j98PoVsOKdZqwEp"
+        "-P2RtoOxKs3k14ZKdUqJ"
       ],
       "name": "Дадабоев Камрон",
       "parentPhone": "",
@@ -832,9 +890,20 @@
       "birthDate": "2013-01-08",
       "dueDay": 19,
       "enrolledAt": 1782294848819,
-      "groupId": "-Ovt0j98PoVsOKdZqwEp",
+      "groupHistory": {
+        "-P2RudaYMBI_Lqd7bwej": {
+          "date": "2026-09-26",
+          "fromGroupId": "-Ovt0j98PoVsOKdZqwEp",
+          "fromGroupName": "BS-FE-05",
+          "groupId": "-P2RtoOxKs3k14ZKdUqJ",
+          "groupName": "BS-FE-05 ertalab",
+          "ts": 1790412755269,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtoOxKs3k14ZKdUqJ",
       "groupIds": [
-        "-Ovt0j98PoVsOKdZqwEp"
+        "-P2RtoOxKs3k14ZKdUqJ"
       ],
       "name": "Юсупов Фаррух",
       "parentPhone": "",
@@ -845,9 +914,20 @@
       "birthDate": "2014-06-14",
       "dueDay": 19,
       "enrolledAt": 1782294890300,
-      "groupId": "-Ovt0j98PoVsOKdZqwEp",
+      "groupHistory": {
+        "-P2RujBrnowzi7EZNzsR": {
+          "date": "2026-09-26",
+          "fromGroupId": "-Ovt0j98PoVsOKdZqwEp",
+          "fromGroupName": "BS-FE-05",
+          "groupId": "-P2RtxLdRLKVmga3FWMG",
+          "groupName": "BS-FE-06 ertalab ",
+          "ts": 1790412778201,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtxLdRLKVmga3FWMG",
       "groupIds": [
-        "-Ovt0j98PoVsOKdZqwEp"
+        "-P2RtxLdRLKVmga3FWMG"
       ],
       "name": "Қаххоров Имрон",
       "parentPhone": "",
@@ -899,12 +979,15 @@
     },
     "-Ovt3NMTUpzz_9D4nmDh": {
       "birthDate": "2015-12-30",
+      "deleted": true,
+      "deletedAt": 1790399477038,
       "dueDay": 1,
       "enrolledAt": 1782295136979,
       "groupId": "-Ovt0j98PoVsOKdZqwEp",
       "groupIds": [
         "-Ovt0j98PoVsOKdZqwEp"
       ],
+      "leftDate": "2026-09-26",
       "name": "Ибрагимов Асадбек",
       "parentPhone": "",
       "phone": "117039333",
@@ -912,12 +995,15 @@
     },
     "-Ovt3ZDEeRi9hqG8Cj7Q": {
       "birthDate": "2014-03-09",
+      "deleted": true,
+      "deletedAt": 1790399335447,
       "dueDay": 1,
       "enrolledAt": 1782295185540,
       "groupId": "-Ovt10BsPNYXqCpVHP3r",
       "groupIds": [
         "-Ovt10BsPNYXqCpVHP3r"
       ],
+      "leftDate": "2026-09-26",
       "name": "Даминов Эмирбек",
       "parentPhone": "",
       "phone": "901812824",
@@ -927,9 +1013,19 @@
       "birthDate": "2012-07-24",
       "dueDay": 24,
       "enrolledAt": 1782295212915,
+      "groupHistory": {
+        "-P2Rut5oWSUvLx-tYwPr": {
+          "date": "2026-09-26",
+          "groupId": "-Ovt0j98PoVsOKdZqwEp",
+          "groupName": "BS-FE-05",
+          "ts": 1790412818773,
+          "type": "joined"
+        }
+      },
       "groupId": "-Ovt10BsPNYXqCpVHP3r",
       "groupIds": [
-        "-Ovt10BsPNYXqCpVHP3r"
+        "-Ovt10BsPNYXqCpVHP3r",
+        "-Ovt0j98PoVsOKdZqwEp"
       ],
       "name": "Даминов Дамирбек",
       "parentPhone": "",
@@ -940,9 +1036,19 @@
       "birthDate": "2014-08-07",
       "dueDay": 24,
       "enrolledAt": 1782295231907,
+      "groupHistory": {
+        "-P2RwjZ0YLL853QiHXhB": {
+          "date": "2026-09-26",
+          "groupId": "-P2RtoOxKs3k14ZKdUqJ",
+          "groupName": "BS-FE-05 ertalab",
+          "ts": 1790413303971,
+          "type": "joined"
+        }
+      },
       "groupId": "-Ovt10BsPNYXqCpVHP3r",
       "groupIds": [
-        "-Ovt10BsPNYXqCpVHP3r"
+        "-Ovt10BsPNYXqCpVHP3r",
+        "-P2RtoOxKs3k14ZKdUqJ"
       ],
       "name": "Даминов Иброҳим",
       "parentPhone": "",
@@ -987,6 +1093,15 @@
       "birthDate": "2016-03-23",
       "dueDay": 25,
       "enrolledAt": 1782295350867,
+      "groupHistory": {
+        "-P2Rv5V_eaipn22q2JVv": {
+          "date": "2026-09-26",
+          "groupId": "-Ovt0j98PoVsOKdZqwEp",
+          "groupName": "BS-FE-05",
+          "ts": 1790412873671,
+          "type": "joined"
+        }
+      },
       "groupId": "-Ovt0j98PoVsOKdZqwEp",
       "groupIds": [
         "-Ovt0j98PoVsOKdZqwEp"
@@ -1000,9 +1115,20 @@
       "birthDate": "2013-08-25",
       "dueDay": 1,
       "enrolledAt": 1782295392539,
-      "groupId": "-Ovt0j98PoVsOKdZqwEp",
+      "groupHistory": {
+        "-P2Ru_TZvpKU-UCGPdC3": {
+          "date": "2026-09-26",
+          "fromGroupId": "-Ovt0j98PoVsOKdZqwEp",
+          "fromGroupName": "BS-FE-05",
+          "groupId": "-P2RtoOxKs3k14ZKdUqJ",
+          "groupName": "BS-FE-05 ertalab",
+          "ts": 1790412738374,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtoOxKs3k14ZKdUqJ",
       "groupIds": [
-        "-Ovt0j98PoVsOKdZqwEp"
+        "-P2RtoOxKs3k14ZKdUqJ"
       ],
       "name": "Юлдошев Ҷахонбек",
       "parentPhone": "",
@@ -1029,9 +1155,19 @@
     "-OwSBOjC9aDhXbawKAFI": {
       "birthDate": "2010-08-15",
       "enrolledAt": 1782901218334,
+      "groupHistory": {
+        "-P2Rv8yVIAjkBEfHr2iY": {
+          "date": "2026-09-26",
+          "groupId": "-Ovt0j98PoVsOKdZqwEp",
+          "groupName": "BS-FE-05",
+          "ts": 1790412887873,
+          "type": "joined"
+        }
+      },
       "groupId": "-Ovt10BsPNYXqCpVHP3r",
       "groupIds": [
-        "-Ovt10BsPNYXqCpVHP3r"
+        "-Ovt10BsPNYXqCpVHP3r",
+        "-Ovt0j98PoVsOKdZqwEp"
       ],
       "name": "Фариза Азаматова",
       "parentPhone": "",
@@ -1041,10 +1177,19 @@
     "-OwSBuqJXhRKSLmItrRI": {
       "birthDate": "2012-01-14",
       "enrolledAt": 1782901353958,
+      "groupHistory": {
+        "-P2RuzNQA2xmTyVlkuAQ": {
+          "date": "2026-09-26",
+          "groupId": "-Ovt0j98PoVsOKdZqwEp",
+          "groupName": "BS-FE-05",
+          "ts": 1790412844477,
+          "type": "joined"
+        }
+      },
       "groupId": "-Ovt10BsPNYXqCpVHP3r",
       "groupIds": [
         "-Ovt10BsPNYXqCpVHP3r",
-        "-OvkosbNtiaoWPxKxzYO"
+        "-Ovt0j98PoVsOKdZqwEp"
       ],
       "name": "Фазлиддин Қамбаров",
       "parentPhone": "",
@@ -1053,12 +1198,12 @@
     },
     "-OwSCC9RADsKdmzGzCqE": {
       "birthDate": "2017-06-04",
+      "deleted": true,
+      "deletedAt": 1790399671771,
       "dueDay": 1,
       "enrolledAt": 1782901428974,
-      "groupId": "-OvkosbNtiaoWPxKxzYO",
-      "groupIds": [
-        "-OvkosbNtiaoWPxKxzYO"
-      ],
+      "groupId": "",
+      "leftDate": "2026-09-26",
       "name": "Хоҷизода фариза",
       "parentPhone": "926486969",
       "phone": "",
@@ -1066,12 +1211,12 @@
     },
     "-OwSCNuKxX1_XriHwDiO": {
       "birthDate": "2016-03-14",
+      "deleted": true,
+      "deletedAt": 1790399666627,
       "dueDay": 1,
       "enrolledAt": 1782901477095,
-      "groupId": "-OvkosbNtiaoWPxKxzYO",
-      "groupIds": [
-        "-OvkosbNtiaoWPxKxzYO"
-      ],
+      "groupId": "",
+      "leftDate": "2026-09-26",
       "name": "Хоҷаев Диёрбек",
       "parentPhone": "926486969",
       "phone": "",
@@ -1079,11 +1224,14 @@
     },
     "-OwXBITXw9xpUtLKPrF_": {
       "birthDate": "2012-11-01",
+      "deleted": true,
+      "deletedAt": 1790399601833,
       "enrolledAt": 1782985082634,
       "groupId": "-Ovt10BsPNYXqCpVHP3r",
       "groupIds": [
         "-Ovt10BsPNYXqCpVHP3r"
       ],
+      "leftDate": "2026-09-26",
       "name": "Турсунов Хумоюн",
       "parentPhone": "",
       "phone": "927109131",
@@ -1092,9 +1240,19 @@
     "-OwXBSTd_oN7hpj_e0s3": {
       "birthDate": "2013-07-20",
       "enrolledAt": 1782985123602,
+      "groupHistory": {
+        "-P2Rwey-oD5_TVeoCXk4": {
+          "date": "2026-09-26",
+          "groupId": "-P2RtoOxKs3k14ZKdUqJ",
+          "groupName": "BS-FE-05 ertalab",
+          "ts": 1790413285154,
+          "type": "joined"
+        }
+      },
       "groupId": "-Ovt10BsPNYXqCpVHP3r",
       "groupIds": [
-        "-Ovt10BsPNYXqCpVHP3r"
+        "-Ovt10BsPNYXqCpVHP3r",
+        "-P2RtoOxKs3k14ZKdUqJ"
       ],
       "name": "Мамаҷонов Аюбҷон",
       "parentPhone": "",
@@ -1174,9 +1332,20 @@
       "birthDate": "2014-12-21",
       "dueDay": 1,
       "enrolledAt": 1783683987097,
-      "groupId": "-OzVX2FWcS3T3ZJKm13x",
+      "groupHistory": {
+        "-P2RwWtgJJxIgjLQmLsq": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OzVX2FWcS3T3ZJKm13x",
+          "fromGroupName": "BS-FE-08",
+          "groupId": "-P2RtxLdRLKVmga3FWMG",
+          "groupName": "BS-FE-06 ertalab ",
+          "ts": 1790413248013,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtxLdRLKVmga3FWMG",
       "groupIds": [
-        "-OzVX2FWcS3T3ZJKm13x"
+        "-P2RtxLdRLKVmga3FWMG"
       ],
       "name": "Хусаинов Ҷахонгир",
       "parentPhone": "781638989",
@@ -1186,9 +1355,19 @@
     "-OxEgGq9x5B1KaT_qwa3": {
       "birthDate": "2009-03-26",
       "enrolledAt": 1783748440527,
+      "groupHistory": {
+        "-P2RvTNGb5bPqTVdv0Zr": {
+          "date": "2026-09-26",
+          "groupId": "-Ovt0j98PoVsOKdZqwEp",
+          "groupName": "BS-FE-05",
+          "ts": 1790412971443,
+          "type": "joined"
+        }
+      },
       "groupId": "-Ovt10BsPNYXqCpVHP3r",
       "groupIds": [
-        "-Ovt10BsPNYXqCpVHP3r"
+        "-Ovt10BsPNYXqCpVHP3r",
+        "-Ovt0j98PoVsOKdZqwEp"
       ],
       "name": "Эгамбердиев Хасанбой",
       "parentPhone": "",
@@ -1222,9 +1401,20 @@
     "-OxFzAXZ2APfe90vVdW9": {
       "birthDate": "2014-07-08",
       "enrolledAt": 1783770171497,
-      "groupId": "-OxACloq9B9ydzRA0JSf",
+      "groupHistory": {
+        "-P2RvihQUkdvi_wxF4al": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OxACloq9B9ydzRA0JSf",
+          "fromGroupName": "BS-FE-07",
+          "groupId": "-P2RtxLdRLKVmga3FWMG",
+          "groupName": "BS-FE-06 ertalab ",
+          "ts": 1790413038333,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtxLdRLKVmga3FWMG",
       "groupIds": [
-        "-OxACloq9B9ydzRA0JSf"
+        "-P2RtxLdRLKVmga3FWMG"
       ],
       "name": "Вохидов Далербек",
       "parentPhone": "",
@@ -1233,12 +1423,12 @@
     },
     "-OxQJl-KWV3QC_SD_0a2": {
       "birthDate": "2016-10-07",
+      "deleted": true,
+      "deletedAt": 1790399688332,
       "dueDay": 13,
       "enrolledAt": 1783943610332,
-      "groupId": "-OvkosbNtiaoWPxKxzYO",
-      "groupIds": [
-        "-OvkosbNtiaoWPxKxzYO"
-      ],
+      "groupId": "",
+      "leftDate": "2026-09-26",
       "name": "Шахриёр Зокирзода",
       "parentPhone": "",
       "phone": "917102898",
@@ -1292,9 +1482,20 @@
       "birthDate": "2014-02-07",
       "dueDay": 16,
       "enrolledAt": 1784536893668,
-      "groupId": "-OxACloq9B9ydzRA0JSf",
+      "groupHistory": {
+        "-P2RvpBppFTy1Wr7VYM7": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OxACloq9B9ydzRA0JSf",
+          "fromGroupName": "BS-FE-07",
+          "groupId": "-P2RtoOxKs3k14ZKdUqJ",
+          "groupName": "BS-FE-05 ertalab",
+          "ts": 1790413064919,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtoOxKs3k14ZKdUqJ",
       "groupIds": [
-        "-OxACloq9B9ydzRA0JSf"
+        "-P2RtoOxKs3k14ZKdUqJ"
       ],
       "name": "Зокиров Зохирҷон",
       "parentPhone": "",
@@ -1305,9 +1506,20 @@
       "birthDate": "2014-12-17",
       "dueDay": 1,
       "enrolledAt": 1784537125845,
-      "groupId": "-OxACloq9B9ydzRA0JSf",
+      "groupHistory": {
+        "-P2RvuGlGzq196x27KKj": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OxACloq9B9ydzRA0JSf",
+          "fromGroupName": "BS-FE-07",
+          "groupId": "-P2RtxLdRLKVmga3FWMG",
+          "groupName": "BS-FE-06 ertalab ",
+          "ts": 1790413085715,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtxLdRLKVmga3FWMG",
       "groupIds": [
-        "-OxACloq9B9ydzRA0JSf"
+        "-P2RtxLdRLKVmga3FWMG"
       ],
       "name": "Каримов Имран",
       "parentPhone": "",
@@ -1329,12 +1541,15 @@
     },
     "-OyYPkah5Q9fPLy8K3QD": {
       "birthDate": "2015-08-22",
+      "deleted": true,
+      "deletedAt": 1790399740083,
       "dueDay": 24,
       "enrolledAt": 1785153130220,
       "groupId": "-Ovkl4d3vP2bO7mU03UA",
       "groupIds": [
         "-Ovkl4d3vP2bO7mU03UA"
       ],
+      "leftDate": "2026-09-26",
       "name": "Ҷумабоев Ойбек",
       "parentPhone": "985952500",
       "phone": "991552500",
@@ -1342,12 +1557,15 @@
     },
     "-OycaLvUNPDkE5STrslf": {
       "birthDate": "2009-08-08",
+      "deleted": true,
+      "deletedAt": 1790399647830,
       "dueDay": 21,
       "enrolledAt": 1785240055675,
       "groupId": "-Ovt10BsPNYXqCpVHP3r",
       "groupIds": [
         "-Ovt10BsPNYXqCpVHP3r"
       ],
+      "leftDate": "2026-09-26",
       "name": "Холматов Махмудҷон",
       "parentPhone": "",
       "phone": "987773037",
@@ -1493,9 +1711,20 @@
       "birthDate": "2011-04-28",
       "dueDay": 1,
       "enrolledAt": 1785482557073,
-      "groupId": "-OxACloq9B9ydzRA0JSf",
+      "groupHistory": {
+        "-P2RwAhaxBlR4phK8QU4": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OxACloq9B9ydzRA0JSf",
+          "fromGroupName": "BS-FE-07",
+          "groupId": "-OzVX2FWcS3T3ZJKm13x",
+          "groupName": "BS-FE-08",
+          "ts": 1790413157128,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-OzVX2FWcS3T3ZJKm13x",
       "groupIds": [
-        "-OxACloq9B9ydzRA0JSf"
+        "-OzVX2FWcS3T3ZJKm13x"
       ],
       "name": "Ҷабборов Давлатбек",
       "parentPhone": "985970590",
@@ -1556,12 +1785,15 @@
     },
     "-OzR4jBQ73IqgXmDW8sp": {
       "birthDate": "2007-10-07",
+      "deleted": true,
+      "deletedAt": 1790399262538,
       "dueDay": 1,
       "enrolledAt": 1786103919784,
       "groupId": "-Ovkl4d3vP2bO7mU03UA",
       "groupIds": [
         "-Ovkl4d3vP2bO7mU03UA"
       ],
+      "leftDate": "2026-09-26",
       "name": "Дадабоев Муродҷон",
       "parentPhone": "",
       "phone": "987570710",
@@ -1571,9 +1803,20 @@
       "birthDate": "2014-01-02",
       "dueDay": 6,
       "enrolledAt": 1786178929079,
-      "groupId": "-OzVX2FWcS3T3ZJKm13x",
+      "groupHistory": {
+        "-P2RwTC5tXbLx08eWVXu": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OzVX2FWcS3T3ZJKm13x",
+          "fromGroupName": "BS-FE-08",
+          "groupId": "-P2RtoOxKs3k14ZKdUqJ",
+          "groupName": "BS-FE-05 ertalab",
+          "ts": 1790413232872,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtoOxKs3k14ZKdUqJ",
       "groupIds": [
-        "-OzVX2FWcS3T3ZJKm13x"
+        "-P2RtoOxKs3k14ZKdUqJ"
       ],
       "name": "Тоҷибоев Парвиз",
       "parentPhone": "",
@@ -1649,9 +1892,20 @@
       "birthDate": "2014-08-12",
       "dueDay": 7,
       "enrolledAt": 1786522653952,
-      "groupId": "-OxACloq9B9ydzRA0JSf",
+      "groupHistory": {
+        "-P2Rw-rnqYipVSdJ3VL-": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OxACloq9B9ydzRA0JSf",
+          "fromGroupName": "BS-FE-07",
+          "groupId": "-P2RtoOxKs3k14ZKdUqJ",
+          "groupName": "BS-FE-05 ertalab",
+          "ts": 1790413112725,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtoOxKs3k14ZKdUqJ",
       "groupIds": [
-        "-OxACloq9B9ydzRA0JSf"
+        "-P2RtoOxKs3k14ZKdUqJ"
       ],
       "name": "Набиев Диёрбек",
       "parentPhone": "",
@@ -1685,9 +1939,20 @@
       "birthDate": "2013-03-02",
       "dueDay": 14,
       "enrolledAt": 1787220219987,
-      "groupId": "-OzVX2FWcS3T3ZJKm13x",
+      "groupHistory": {
+        "-P2RwLOe3J-6R-WKNgio": {
+          "date": "2026-09-26",
+          "fromGroupId": "-OzVX2FWcS3T3ZJKm13x",
+          "fromGroupName": "BS-FE-08",
+          "groupId": "-P2RtxLdRLKVmga3FWMG",
+          "groupName": "BS-FE-06 ertalab ",
+          "ts": 1790413200908,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RtxLdRLKVmga3FWMG",
       "groupIds": [
-        "-OzVX2FWcS3T3ZJKm13x"
+        "-P2RtxLdRLKVmga3FWMG"
       ],
       "name": "Примқулова Чаросхон",
       "parentPhone": "",
@@ -1796,6 +2061,8 @@
     },
     "-P0l9oGlomwuqoJFuorr": {
       "birthDate": "",
+      "deleted": true,
+      "deletedAt": 1790074205299,
       "enrolledAt": 1788605053551,
       "interestCourseId": "-OvkY7jOoZEbbFqVVyRH",
       "name": "Мирзабобоева Наргиза ",
@@ -1841,10 +2108,7 @@
       "birthDate": "2009-09-11",
       "dueDay": 11,
       "enrolledAt": 1789545619188,
-      "groupId": "-Ovkeuz_3-D0m5sHp4A0",
-      "groupIds": [
-        "-Ovkeuz_3-D0m5sHp4A0"
-      ],
+      "groupId": "",
       "name": "Ҷураев Бехруз ",
       "parentPhone": "",
       "phone": "781650070",
@@ -1869,6 +2133,254 @@
       "parentPhone": "",
       "phone": "929218118",
       "status": "pending"
+    },
+    "-P1njr-ZV5IMtaxvxSA2": {
+      "birthDate": "1997-07-27",
+      "dueDay": 19,
+      "enrolledAt": 1789722055100,
+      "groupId": "",
+      "name": "Абдувохидов Хумоюн ",
+      "parentPhone": "",
+      "phone": "934221838",
+      "status": "active"
+    },
+    "-P1nkFgNe5rERBDHVPjz": {
+      "birthDate": "2007-08-01",
+      "dueDay": 19,
+      "enrolledAt": 1789722160304,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupIds": [
+        "-P1njOPnPSjcoul6tS_p"
+      ],
+      "name": "Ахмедов Отабек ",
+      "parentPhone": "",
+      "phone": "750177700",
+      "status": "active"
+    },
+    "-P1nkcatWSvA_3_Sg5lp": {
+      "birthDate": "2008-02-15",
+      "dueDay": 19,
+      "enrolledAt": 1789722258257,
+      "groupHistory": {
+        "-P2RqDbWP1Bznprri2WR": {
+          "date": "2026-09-26",
+          "fromGroupId": "-P1njOPnPSjcoul6tS_p",
+          "fromGroupName": "BS-DE-04",
+          "groupId": "-P2RpS_Sv_x-_7BstDRf",
+          "groupName": "BS-DE-05",
+          "ts": 1790411596163,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RpS_Sv_x-_7BstDRf",
+      "groupIds": [
+        "-P2RpS_Sv_x-_7BstDRf"
+      ],
+      "name": "Дадаҷонов Мухаммад",
+      "parentPhone": "",
+      "phone": "074968008",
+      "status": "active"
+    },
+    "-P1nksb8CJ0gkgY0MfjN": {
+      "birthDate": "2009-11-12",
+      "dueDay": 19,
+      "enrolledAt": 1789722323808,
+      "groupHistory": {
+        "-P2RqMm8Dr5Ujc4tBHkE": {
+          "date": "2026-09-26",
+          "fromGroupId": "-P1njOPnPSjcoul6tS_p",
+          "fromGroupName": "BS-DE-04",
+          "groupId": "-P2RpS_Sv_x-_7BstDRf",
+          "groupName": "BS-DE-05",
+          "ts": 1790411633707,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RpS_Sv_x-_7BstDRf",
+      "groupIds": [
+        "-P2RpS_Sv_x-_7BstDRf"
+      ],
+      "name": "Нишонов Азамат ",
+      "parentPhone": "",
+      "phone": "784557070",
+      "status": "active"
+    },
+    "-P1nl9f1XvMg7fv5D-lM": {
+      "birthDate": "2009-04-11",
+      "dueDay": 19,
+      "enrolledAt": 1789722397786,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupIds": [
+        "-P1njOPnPSjcoul6tS_p"
+      ],
+      "name": "Холиков Ҷасурбек ",
+      "parentPhone": "",
+      "phone": "988348458",
+      "status": "active"
+    },
+    "-P1nlNoZszHNHTJxB2QD": {
+      "birthDate": "2009-05-06",
+      "dueDay": 19,
+      "enrolledAt": 1789722455740,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupIds": [
+        "-P1njOPnPSjcoul6tS_p"
+      ],
+      "name": "Ҷураев Хасан ",
+      "parentPhone": "",
+      "phone": "715000404",
+      "status": "active"
+    },
+    "-P1nlaKDv9XOligS-BbJ": {
+      "birthDate": "2011-11-16",
+      "dueDay": 19,
+      "enrolledAt": 1789722511078,
+      "groupHistory": {
+        "-P2RqIeLvo01tq-Vvfnj": {
+          "date": "2026-09-26",
+          "fromGroupId": "-P1njOPnPSjcoul6tS_p",
+          "fromGroupName": "BS-DE-04",
+          "groupId": "-P2RpS_Sv_x-_7BstDRf",
+          "groupName": "BS-DE-05",
+          "ts": 1790411616823,
+          "type": "transferred"
+        }
+      },
+      "groupId": "-P2RpS_Sv_x-_7BstDRf",
+      "groupIds": [
+        "-P2RpS_Sv_x-_7BstDRf"
+      ],
+      "name": "Мамаҷонов Фирдавс ",
+      "parentPhone": "",
+      "phone": "985550575",
+      "status": "active"
+    },
+    "-P1nlzxL0uj0K5-7tLwf": {
+      "birthDate": "2011-09-19",
+      "dueDay": 19,
+      "enrolledAt": 1789722616045,
+      "groupId": "",
+      "name": "Саидова Хушноза ",
+      "parentPhone": "",
+      "phone": "929973595",
+      "status": "active"
+    },
+    "-P2RqoG7IQNpaH34e6PG": {
+      "birthDate": "",
+      "dueDay": 20,
+      "enrolledAt": 1790411750377,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupIds": [
+        "-P1njOPnPSjcoul6tS_p"
+      ],
+      "name": "Бобоҷонов Исломҷон",
+      "parentPhone": "",
+      "phone": "985427400",
+      "status": "active"
+    },
+    "-P2Rr4EspVxjaeBkjDuX": {
+      "birthDate": "",
+      "dueDay": 19,
+      "enrolledAt": 1790411819930,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupIds": [
+        "-P1njOPnPSjcoul6tS_p"
+      ],
+      "name": "Қамбаров Тошбек",
+      "parentPhone": "",
+      "phone": "928502425",
+      "status": "active"
+    },
+    "-P2RrEI5qTRJw5MTBIWS": {
+      "birthDate": "",
+      "dueDay": 19,
+      "enrolledAt": 1790411861096,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupIds": [
+        "-P1njOPnPSjcoul6tS_p"
+      ],
+      "name": "Садиев Самандар",
+      "parentPhone": "",
+      "phone": "918399517",
+      "status": "active"
+    },
+    "-P2RrcukQ7gLWYys9TBQ": {
+      "birthDate": "",
+      "dueDay": 20,
+      "enrolledAt": 1790411966033,
+      "groupId": "-P2RpS_Sv_x-_7BstDRf",
+      "groupIds": [
+        "-P2RpS_Sv_x-_7BstDRf"
+      ],
+      "name": "Икромбеков Дадахон ",
+      "parentPhone": "",
+      "phone": "035664545",
+      "status": "active"
+    },
+    "-P2RrqKTcg6OIXyA2AMs": {
+      "birthDate": "",
+      "dueDay": 20,
+      "enrolledAt": 1790412020992,
+      "groupId": "-P2RpS_Sv_x-_7BstDRf",
+      "groupIds": [
+        "-P2RpS_Sv_x-_7BstDRf"
+      ],
+      "name": "Ахмадҷонов Фирузбек",
+      "parentPhone": "",
+      "phone": "200100903",
+      "status": "active"
+    },
+    "-P2Rs1u18laNfy1js-U0": {
+      "birthDate": "",
+      "dueDay": 20,
+      "enrolledAt": 1790412072484,
+      "groupId": "-P2RpS_Sv_x-_7BstDRf",
+      "groupIds": [
+        "-P2RpS_Sv_x-_7BstDRf"
+      ],
+      "name": "Мамарофиев Ҷасурбек",
+      "parentPhone": "",
+      "phone": "919142302",
+      "status": "active"
+    },
+    "-P2RsE9m8-CFJAYvVV0d": {
+      "birthDate": "",
+      "dueDay": 20,
+      "enrolledAt": 1790412122708,
+      "groupId": "-P2RpS_Sv_x-_7BstDRf",
+      "groupIds": [
+        "-P2RpS_Sv_x-_7BstDRf"
+      ],
+      "name": "Саримсоқов Абдурахмон",
+      "parentPhone": "",
+      "phone": "871402626",
+      "status": "active"
+    },
+    "-P2RsNgj_1UZuiyQ3Pqj": {
+      "birthDate": "",
+      "dueDay": 20,
+      "enrolledAt": 1790412161745,
+      "groupId": "-P2RpS_Sv_x-_7BstDRf",
+      "groupIds": [
+        "-P2RpS_Sv_x-_7BstDRf"
+      ],
+      "name": "Толибов Сардор",
+      "parentPhone": "",
+      "phone": "928502425",
+      "status": "active"
+    },
+    "-P2RsZZ2C_cC4X4wJ6gN": {
+      "birthDate": "",
+      "dueDay": 23,
+      "enrolledAt": 1790412210341,
+      "groupId": "-P2RpS_Sv_x-_7BstDRf",
+      "groupIds": [
+        "-P2RpS_Sv_x-_7BstDRf"
+      ],
+      "name": "Холматов Абрали ",
+      "parentPhone": "",
+      "phone": "920221487",
+      "status": "active"
     }
   },
   "groups": {
@@ -2033,7 +2545,7 @@
       "courseId": "-OvkhxmNePJh2elcASXC",
       "endDate": "",
       "id": "-OvkosbNtiaoWPxKxzYO",
-      "isActive": true,
+      "isActive": false,
       "maxStudents": 15,
       "name": "BS-DE-03",
       "room": "Кабинет 2",
@@ -2164,6 +2676,82 @@
       },
       "startDate": "2026-08-06",
       "teacherId": "-OvkYLE8XPXMgAIVbcfR"
+    },
+    "-P1njOPnPSjcoul6tS_p": {
+      "courseId": "-OvkhxmNePJh2elcASXC",
+      "endDate": "",
+      "isActive": true,
+      "maxStudents": 12,
+      "name": "BS-DE-04",
+      "room": "Кабинет 1",
+      "schedule": {
+        "days": [
+          "tuesday",
+          "thursday",
+          "saturday"
+        ],
+        "duration": 90,
+        "time": "18:00"
+      },
+      "startDate": "2026-09-15",
+      "teacherId": "-OvkYLE8XPXMgAIVbcfR"
+    },
+    "-P2RpS_Sv_x-_7BstDRf": {
+      "courseId": "-OvkhxmNePJh2elcASXC",
+      "endDate": "",
+      "isActive": true,
+      "maxStudents": 10,
+      "name": "BS-DE-05",
+      "room": "Кабинет 1",
+      "schedule": {
+        "days": [
+          "monday",
+          "wednesday",
+          "friday"
+        ],
+        "duration": 90,
+        "time": "18:00"
+      },
+      "startDate": "2026-09-19",
+      "teacherId": "-OvkYLE8XPXMgAIVbcfR"
+    },
+    "-P2RtoOxKs3k14ZKdUqJ": {
+      "courseId": "-OvkXqipwvH0HxVQwsFR",
+      "endDate": "",
+      "isActive": true,
+      "maxStudents": 15,
+      "name": "BS-FE-05 ertalab",
+      "room": "Кабинет 1",
+      "schedule": {
+        "days": [
+          "monday",
+          "wednesday",
+          "friday"
+        ],
+        "duration": 90,
+        "time": "10:00"
+      },
+      "startDate": "",
+      "teacherId": "-OvkYLE8XPXMgAIVbcfR"
+    },
+    "-P2RtxLdRLKVmga3FWMG": {
+      "courseId": "-OvkXqipwvH0HxVQwsFR",
+      "endDate": "",
+      "isActive": true,
+      "maxStudents": 15,
+      "name": "BS-FE-06 ertalab ",
+      "room": "Кабинет 1",
+      "schedule": {
+        "days": [
+          "tuesday",
+          "thursday",
+          "saturday"
+        ],
+        "duration": 90,
+        "time": "09:00"
+      },
+      "startDate": "",
+      "teacherId": "-OvkYLE8XPXMgAIVbcfR"
     }
   },
   "courses": {
@@ -2260,8 +2848,8 @@
     "-OvksQ5kQXkmN3alGh5D": {
       "hireDate": "",
       "isActive": true,
-      "name": "ГулшодаAdmin",
-      "phone": "926901607",
+      "name": "Nozanin Fayzulloeva",
+      "phone": "114411807",
       "salaryAmount": 5,
       "salaryType": "percent_total",
       "specialization": [
@@ -6322,6 +6910,342 @@
       "status": "paid",
       "studentId": "-OxAqQPiIJrK1n42GIYX",
       "studentName": "Хусаинов Ҷахонгир"
+    },
+    "-P1sH-AtpueYwlDlzo_o": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 7,
+      "groupId": "-OxACloq9B9ydzRA0JSf",
+      "method": "card",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1789798114729,
+      "paidDate": "2026-09-19",
+      "status": "paid",
+      "studentId": "-Ozp24GGuBm9U8p1IWxq",
+      "studentName": "Набиев Диёрбек"
+    },
+    "-P1sHAFYc3MUGalUow39": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 6,
+      "groupId": "-OvkeUK0mmVgioEvb47b",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1789798160083,
+      "paidDate": "2026-09-18",
+      "status": "paid",
+      "studentId": "-Ozp1E2Gvt4WSAduwHAU",
+      "studentName": "Усмонов Диёрбек"
+    },
+    "-P1sHGPqmHU9Eqv5GV5w": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 1,
+      "groupId": "-OvkeUK0mmVgioEvb47b",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1789798185319,
+      "paidDate": "2026-09-14",
+      "status": "paid",
+      "studentId": "-OyrxcF0ayIJK5gbmi8O",
+      "studentName": "Азизҳуҷаева Диёра"
+    },
+    "-P1sHSDbOCForsXl2a_z": {
+      "amount": 270,
+      "discount": 30,
+      "discountSom": 30,
+      "dueDay": 15,
+      "groupId": "-OvkZByvUBPat4zv0IQr",
+      "method": "card",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1789798233687,
+      "paidDate": "2026-09-18",
+      "status": "paid",
+      "studentId": "-OvkX5xDD6_waAHKZXYr",
+      "studentName": "Ойбек Тошматов"
+    },
+    "-P1sHYgeVCg4dg171Ewz": {
+      "amount": 270,
+      "discount": 30,
+      "discountSom": 30,
+      "dueDay": 15,
+      "groupId": "-Ovkl4d3vP2bO7mU03UA",
+      "method": "card",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1789798260187,
+      "paidDate": "2026-09-19",
+      "status": "paid",
+      "studentId": "-OvkX5xDD6_waAHKZXYr",
+      "studentName": "Ойбек Тошматов"
+    },
+    "-P1sHiv7HZlnEZrrsv5Q": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 15,
+      "groupId": "-OvkosbNtiaoWPxKxzYO",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1789798306168,
+      "paidDate": "2026-09-18",
+      "status": "paid",
+      "studentId": "-OvkpIhFsACEeuBfomNC",
+      "studentName": "Собирова Паризода"
+    },
+    "-P22ZSCVoMzZjhJIG47j": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 14,
+      "groupId": "-OzVX2FWcS3T3ZJKm13x",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1789987499097,
+      "paidDate": "2026-09-21",
+      "status": "paid",
+      "studentId": "-P-Tc4TBela-BN1num56",
+      "studentName": "Примқулова Чаросхон"
+    },
+    "-P22ZZhR9y85jj3Y9RgL": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 1,
+      "groupId": "-OzVX2FWcS3T3ZJKm13x",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1789987529774,
+      "paidDate": "2026-09-21",
+      "status": "paid",
+      "studentId": "-OvnCa_jRtdKLO6NLoS_",
+      "studentName": "Садуллоев Асилбек"
+    },
+    "-P27MRMGzhyTCELz95r_": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 1,
+      "groupId": "-OzVX2FWcS3T3ZJKm13x",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790067973139,
+      "paidDate": "2026-09-22",
+      "status": "paid",
+      "studentId": "-OvnCa_jRtdKLO6NLoS_",
+      "studentName": "Садуллоев Асилбек"
+    },
+    "-P27MVlloG1hIkmseVwl": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 12,
+      "groupId": "-Ovkl4d3vP2bO7mU03UA",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790067991220,
+      "paidDate": "2026-09-21",
+      "status": "paid",
+      "studentId": "-Ovkk7JAtIasnxyhl-WG",
+      "studentName": "Дехконова Мехрангиз"
+    },
+    "-P27MZoIFmSyWU3w0r2W": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 5,
+      "groupId": "-OvkeUK0mmVgioEvb47b",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790068007765,
+      "paidDate": "2026-09-22",
+      "status": "paid",
+      "studentId": "-Ovke47_3yl0eO85OtHj",
+      "studentName": "Мамуров Шохрух"
+    },
+    "-P2BN5gP3t61Ez03Vulu": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 12,
+      "groupId": "-Ovkl4d3vP2bO7mU03UA",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790135255072,
+      "paidDate": "2026-09-22",
+      "status": "paid",
+      "studentId": "-Ovkkj_8iH5kCIzZT5ts",
+      "studentName": "Чураев Юсуфчон "
+    },
+    "-P2BNHrFHuLDOqLDINmC": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 1,
+      "groupId": "-OxACloq9B9ydzRA0JSf",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790135304919,
+      "paidDate": "2026-09-19",
+      "status": "paid",
+      "studentId": "-Oyr2emEBwAsFUUmzqJW",
+      "studentName": "Вайдуллоева Гулёра"
+    },
+    "-P2CiEuUzFa-fzyKICOw": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 22,
+      "groupId": "-Ovkeuz_3-D0m5sHp4A0",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790157836744,
+      "paidDate": "2026-09-23",
+      "status": "paid",
+      "studentId": "-OvkfC3QUxDHaBkymZ7N",
+      "studentName": "Абдучабборов Умедчон"
+    },
+    "-P2CiI0vf3lSoEdRHxm6": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 11,
+      "groupId": "-Ovkeuz_3-D0m5sHp4A0",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790157849508,
+      "paidDate": "2026-09-23",
+      "status": "paid",
+      "studentId": "-OvkmMUl1hRvqvhp0dxD",
+      "studentName": "Дадабоева Мумтозбегим"
+    },
+    "-P2CiLjQEMg_oBqEWYSr": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 14,
+      "groupId": "-Ovkeuz_3-D0m5sHp4A0",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790157864708,
+      "paidDate": "2026-09-23",
+      "status": "paid",
+      "studentId": "-OyloHjrGs6y1Ye-dQ-J",
+      "studentName": "Солиев Бехруз"
+    },
+    "-P2N17Q4eNBiS6jCasP1": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 22,
+      "groupId": "-Ovkeuz_3-D0m5sHp4A0",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790330831614,
+      "paidDate": "2026-09-25",
+      "status": "paid",
+      "studentId": "-Ovkf43FnE_uQgkQ8kZi",
+      "studentName": "Абдувалиев Бобур"
+    },
+    "-P2N1AiIlEBr3VVmSL-z": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 14,
+      "groupId": "-Ovkeuz_3-D0m5sHp4A0",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790330845133,
+      "paidDate": "2026-09-25",
+      "status": "paid",
+      "studentId": "-OvkfIeGAnLHFnb6xlQP",
+      "studentName": "Исматов Исматчон"
+    },
+    "-P2N1EXCeirl3vZzlSZz": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 1,
+      "groupId": "-Ovkeuz_3-D0m5sHp4A0",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790330860743,
+      "paidDate": "2026-09-25",
+      "status": "paid",
+      "studentId": "-Ovkg3_9G1uNhFWEWDgZ",
+      "studentName": "Шокиров Мухаммадали"
+    },
+    "-P2R11JiyDSjt3BPFP_R": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 19,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "method": "cash",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790397914907,
+      "paidDate": "2026-09-25",
+      "status": "paid",
+      "studentId": "-P1nkFgNe5rERBDHVPjz",
+      "studentName": "Ахмедов Отабек "
+    },
+    "-P2RwwzubqRuIgPIkdkO": {
+      "amount": 300,
+      "discount": 0,
+      "discountSom": 0,
+      "dueDay": 19,
+      "groupId": "-P2RtxLdRLKVmga3FWMG",
+      "method": "card",
+      "month": "2026-09",
+      "notes": "",
+      "originalPrice": 300,
+      "paidAt": 1790413359004,
+      "paidDate": "2026-09-26",
+      "status": "paid",
+      "studentId": "-Ovt2R86ENZfDAtC6lwU",
+      "studentName": "Қаххоров Имрон"
     }
   },
   "attendance": {
@@ -9604,6 +10528,174 @@
       "startDate": "01.05.2026",
       "studentId": "-P1dDnJX2JojUJgWiD-9",
       "studentName": "Ҷураев Бехруз "
+    },
+    "-P1nppoUP5DVyAwLt4GP": {
+      "address": "ноҳияи Ҷаббор Расулов, ҷамоати деҳаи Гулакандоз, кӯчаи А. Ҷомӣ, 1",
+      "birthDate": "27.07.1997",
+      "centerName": "BitSoft",
+      "centerPhone": "+992918821299",
+      "contractNumber": "110/2026",
+      "courseId": "-OvkhxmNePJh2elcASXC",
+      "courseName": "Немецкий язык А1",
+      "createdAt": 1789723625711,
+      "directorName": "Бурхонов У.И.",
+      "graceDays": 5,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupName": "BS-DE-04",
+      "parentPhone": "",
+      "phone": "934221838",
+      "price": 300,
+      "signDate": "18.09.2026",
+      "startDate": "15.09.2026",
+      "studentId": "-P1njr-ZV5IMtaxvxSA2",
+      "studentName": "Абдувохидов Хумоюн "
+    },
+    "-P1nq5EPgkMe_eXR-jW2": {
+      "address": "ноҳияи Ҷаббор Расулов, ҷамоати деҳаи Гулакандоз, кӯчаи А. Ҷомӣ, 1",
+      "birthDate": "01.08.2007",
+      "centerName": "BitSoft",
+      "centerPhone": "+992918821299",
+      "contractNumber": "111/2026",
+      "courseId": "-OvkhxmNePJh2elcASXC",
+      "courseName": "Немецкий язык А1",
+      "createdAt": 1789723692970,
+      "directorName": "Бурхонов У.И.",
+      "graceDays": 5,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupName": "BS-DE-04",
+      "parentPhone": "",
+      "phone": "750177700",
+      "price": 300,
+      "signDate": "18.09.2026",
+      "startDate": "15.09.2026",
+      "studentId": "-P1nkFgNe5rERBDHVPjz",
+      "studentName": "Ахмедов Отабек "
+    },
+    "-P1nqMAAW428eNI8-cWc": {
+      "address": "ноҳияи Ҷаббор Расулов, ҷамоати деҳаи Гулакандоз, кӯчаи А. Ҷомӣ, 1",
+      "birthDate": "15.02.2008",
+      "centerName": "BitSoft",
+      "centerPhone": "+992918821299",
+      "contractNumber": "112/2026",
+      "courseId": "-OvkhxmNePJh2elcASXC",
+      "courseName": "Немецкий язык А1",
+      "createdAt": 1789723762331,
+      "directorName": "Бурхонов У.И.",
+      "graceDays": 5,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupName": "BS-DE-04",
+      "parentPhone": "",
+      "phone": "074968008",
+      "price": 300,
+      "signDate": "18.09.2026",
+      "startDate": "15.09.2026",
+      "studentId": "-P1nkcatWSvA_3_Sg5lp",
+      "studentName": "Дадаҷонов Мухаммад"
+    },
+    "-P1nq_v-n5SF5nE-tgKa": {
+      "address": "ноҳияи Ҷаббор Расулов, ҷамоати деҳаи Гулакандоз, кӯчаи А. Ҷомӣ, 1",
+      "birthDate": "16.11.2011",
+      "centerName": "BitSoft",
+      "centerPhone": "+992918821299",
+      "contractNumber": "113/2026",
+      "courseId": "-OvkhxmNePJh2elcASXC",
+      "courseName": "Немецкий язык А1",
+      "createdAt": 1789723822736,
+      "directorName": "Бурхонов У.И.",
+      "graceDays": 5,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupName": "BS-DE-04",
+      "parentPhone": "",
+      "phone": "985550575",
+      "price": 300,
+      "signDate": "18.09.2026",
+      "startDate": "15.09.2026",
+      "studentId": "-P1nlaKDv9XOligS-BbJ",
+      "studentName": "Мамаҷонов Фирдавс "
+    },
+    "-P1nqnjObscPWYp3e0yq": {
+      "address": "ноҳияи Ҷаббор Расулов, ҷамоати деҳаи Гулакандоз, кӯчаи А. Ҷомӣ, 1",
+      "birthDate": "12.11.2009",
+      "centerName": "BitSoft",
+      "centerPhone": "+992918821299",
+      "contractNumber": "114/2026",
+      "courseId": "-OvkhxmNePJh2elcASXC",
+      "courseName": "Немецкий язык А1",
+      "createdAt": 1789723879337,
+      "directorName": "Бурхонов У.И.",
+      "graceDays": 5,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupName": "BS-DE-04",
+      "parentPhone": "",
+      "phone": "784557070",
+      "price": 300,
+      "signDate": "18.09.2026",
+      "startDate": "15.09.2026",
+      "studentId": "-P1nksb8CJ0gkgY0MfjN",
+      "studentName": "Нишонов Азамат "
+    },
+    "-P1nr1rEge1tgjqGdmdO": {
+      "address": "ноҳияи Ҷаббор Расулов, ҷамоати деҳаи Гулакандоз, кӯчаи А. Ҷомӣ, 1",
+      "birthDate": "19.09.2011",
+      "centerName": "BitSoft",
+      "centerPhone": "+992918821299",
+      "contractNumber": "115/2026",
+      "courseId": "-OvkhxmNePJh2elcASXC",
+      "courseName": "Немецкий язык А1",
+      "createdAt": 1789723941279,
+      "directorName": "Бурхонов У.И.",
+      "graceDays": 5,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupName": "BS-DE-04",
+      "parentPhone": "",
+      "phone": "929973595",
+      "price": 300,
+      "signDate": "18.09.2026",
+      "startDate": "15.09.2026",
+      "studentId": "-P1nlzxL0uj0K5-7tLwf",
+      "studentName": "Саидова Хушноза "
+    },
+    "-P1nrGCs2wKkn-SIMRKo": {
+      "address": "ноҳияи Ҷаббор Расулов, ҷамоати деҳаи Гулакандоз, кӯчаи А. Ҷомӣ, 1",
+      "birthDate": "11.04.2009",
+      "centerName": "BitSoft",
+      "centerPhone": "+992918821299",
+      "contractNumber": "116/2026",
+      "courseId": "-OvkhxmNePJh2elcASXC",
+      "courseName": "Немецкий язык А1",
+      "createdAt": 1789724000072,
+      "directorName": "Бурхонов У.И.",
+      "graceDays": 5,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupName": "BS-DE-04",
+      "parentPhone": "",
+      "phone": "988348458",
+      "price": 300,
+      "signDate": "18.09.2026",
+      "startDate": "15.09.2026",
+      "studentId": "-P1nl9f1XvMg7fv5D-lM",
+      "studentName": "Холиков Ҷасурбек "
+    },
+    "-P1nraRs8A2qftgjUhXs": {
+      "address": "ноҳияи Ҷаббор Расулов, ҷамоати деҳаи Гулакандоз, кӯчаи А. Ҷомӣ, 1",
+      "birthDate": "06.05.2009",
+      "centerName": "BitSoft",
+      "centerPhone": "+992918821299",
+      "contractNumber": "117/2026",
+      "courseId": "-OvkhxmNePJh2elcASXC",
+      "courseName": "Немецкий язык А1",
+      "createdAt": 1789724087048,
+      "directorName": "Бурхонов У.И.",
+      "graceDays": 5,
+      "groupId": "-P1njOPnPSjcoul6tS_p",
+      "groupName": "BS-DE-04",
+      "parentPhone": "",
+      "phone": "715000404",
+      "price": 300,
+      "signDate": "18.09.2026",
+      "startDate": "15.09.2026",
+      "studentId": "-P1nlNoZszHNHTJxB2QD",
+      "studentName": "Ҷураев Хасан "
     }
   },
   "cashExpenses": {

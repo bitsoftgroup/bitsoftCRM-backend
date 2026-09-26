@@ -11,6 +11,8 @@
     "build": "prisma generate && tsc -p tsconfig.json",
     "start": "node dist/src/index.js",
     "lint": "eslint .",
+    "test": "tsx --test tests/*.test.ts",
+    "test:analytics": "tsx --test tests/superadminAnalytics.test.ts",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:deploy": "prisma migrate deploy",

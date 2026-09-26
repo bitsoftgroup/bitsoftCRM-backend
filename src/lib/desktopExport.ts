@@ -32,9 +32,10 @@ async function buildDesktopApp(centerId: string): Promise<string> {
   const center = await prisma.educationCenter.findUniqueOrThrow({ where: { id: centerId } })
   // A fresh token is minted on every export (the first one included) and the plaintext
   // is never shown or returned anywhere — it goes straight into the packaged app's config.
+  // Its hash is only stored once the build has succeeded (below): rotating it up front would
+  // lock out every already-installed desktop app whenever a rebuild fails.
   const { generateTenantToken } = await import('./tenantToken.js')
   const { token, hash } = generateTenantToken()
-  await prisma.educationCenter.update({ where: { id: centerId }, data: { tenantTokenHash: hash } })
 
   writeFileSync(
     path.join(DESKTOP_PROJECT_DIR, 'tenant-config.json'),
@@ -73,6 +74,10 @@ async function buildDesktopApp(centerId: string): Promise<string> {
   for (const file of readdirSync(centerExportsDir)) {
     if (file !== path.basename(destPath)) rmSync(path.join(centerExportsDir, file), { force: true })
   }
+
+  // The build succeeded, so the new token can now replace the old one (which retires the
+  // previously exported apps, as documented on the regenerate-token route).
+  await prisma.educationCenter.update({ where: { id: centerId }, data: { tenantTokenHash: hash } })
 
   return destPath
 }

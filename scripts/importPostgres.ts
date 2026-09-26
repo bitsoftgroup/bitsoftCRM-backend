@@ -174,13 +174,15 @@ async function main() {
       attendanceSkipped++
       continue
     }
+    // Students got new UUIDs on import, so the Firebase keys in `records` must be remapped
+    // or every mark points at a student that no longer exists. Unmapped keys are kept as-is
+    // (a mark for a student absent from the export is still data, not something to drop).
+    const records: Record<string, string> = {}
+    for (const [fbStudentId, status] of Object.entries((val.records as Record<string, string>) ?? {})) {
+      records[studentIdMap.get(fbStudentId) ?? fbStudentId] = status
+    }
     await prisma.attendance.create({
-      data: {
-        educationCenterId,
-        groupId,
-        date,
-        records: (val.records as Record<string, string>) ?? {},
-      },
+      data: { educationCenterId, groupId, date, records },
     })
     attendanceCount++
   }

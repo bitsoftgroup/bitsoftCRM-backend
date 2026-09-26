@@ -21,7 +21,12 @@ router.get(
       return res.status(400).json({ error: 'phone or parentPhone query param is required' })
     }
 
-    const students = await prisma.student.findMany({ where: { deleted: false } })
+    // With a tenant token the lookup stays inside that center: the same phone number
+    // can exist in two centers, and must not turn into a cross-center "multiple matches".
+    const students = await prisma.student.findMany({
+      where: { deleted: false, ...(req.tenantCenterId ? { educationCenterId: req.tenantCenterId } : {}) },
+      select: { id: true, phone: true, parentPhone: true },
+    })
     const matches = students.filter((student) => {
       const studentPhone = normalizePhone(student.phone)
       const studentParentPhone = normalizePhone(student.parentPhone)

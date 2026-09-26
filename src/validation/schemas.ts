@@ -32,7 +32,11 @@ export const educationCenterCreateSchema = z.object({
   adminEmail: z.string().email(),
   adminPassword: z.string().min(1),
 })
-export const educationCenterUpdateSchema = educationCenterCreateSchema.partial()
+// Editing a center never touches its login credentials; a stray adminEmail/adminPassword
+// must be dropped here, otherwise Prisma rejects them as unknown columns of EducationCenter.
+export const educationCenterUpdateSchema = educationCenterCreateSchema
+  .omit({ adminEmail: true, adminPassword: true })
+  .partial()
 
 export const studentCreateSchema = z.object({
   name: z.string().min(1),
@@ -124,7 +128,7 @@ export const cashExpenseCreateSchema = z.object({
 })
 export const cashExpenseUpdateSchema = cashExpenseCreateSchema.partial()
 
-export const discountsSchema = z.record(z.string(), z.number())
+export const discountsSchema = z.record(z.string(), z.number().min(0).max(100))
 
 export const holidaysSchema = z.array(z.object({ from: z.string(), to: z.string() }))
 
@@ -140,6 +144,15 @@ export const contractInfoSchema = z.object({
 
 export const cashOpeningBalanceSchema = z.object({
   amount: z.number(),
+})
+
+const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/)
+
+export const attendanceQuerySchema = z.object({
+  groupId: z.string().min(1),
+  date: isoDate.optional(),
+  from: isoDate.optional(),
+  to: isoDate.optional(),
 })
 
 export const attendanceUpsertSchema = z.object({

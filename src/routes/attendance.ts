@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { prisma } from '../prisma.js'
 import { authenticate, requireRole } from '../middleware/auth.js'
 import { asyncHandler } from '../lib/asyncHandler.js'
-import { attendanceUpsertSchema } from '../validation/schemas.js'
+import { attendanceQuerySchema, attendanceUpsertSchema } from '../validation/schemas.js'
 
 const router = Router()
 router.use(authenticate, requireRole('admin', 'reception', 'teacher'))
@@ -20,13 +20,14 @@ async function assertOwnsGroup(req: import('express').Request, groupId: string) 
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const groupId = String(req.query.groupId ?? '')
-    if (!groupId) return res.status(400).json({ error: 'groupId is required' })
+    const parsed = attendanceQuerySchema.safeParse(req.query)
+    if (!parsed.success) {
+      const missingGroup = parsed.error.flatten().fieldErrors.groupId
+      if (missingGroup) return res.status(400).json({ error: 'groupId is required' })
+      return res.status(400).json({ error: 'date, from and to must be YYYY-MM-DD' })
+    }
+    const { groupId, date, from, to } = parsed.data
     if (!(await assertOwnsGroup(req, groupId))) return res.status(403).json({ error: 'Not your group' })
-
-    const date = req.query.date ? String(req.query.date) : undefined
-    const from = req.query.from ? String(req.query.from) : undefined
-    const to = req.query.to ? String(req.query.to) : undefined
 
     const where: Record<string, unknown> = { groupId, educationCenterId: req.user!.educationCenterId }
     if (date) where.date = new Date(date)
