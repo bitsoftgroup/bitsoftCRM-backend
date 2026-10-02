@@ -50,3 +50,9 @@ export async function resolveTenant(req: Request, res: Response, next: NextFunct
   req.tenantCenterId = center.id
   next()
 }
+
+/** For endpoints meant only for apps that carry a center's tenant token (the desktop app). */
+export function requireTenant(req: Request, res: Response, next: NextFunction) {
+  if (!req.tenantCenterId) return res.status(401).json({ error: 'Tenant token required' })
+  next()
+}

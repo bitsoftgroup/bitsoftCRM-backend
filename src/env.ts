@@ -20,4 +20,6 @@ export const env = {
   MASTER_TOKEN_HASH: process.env.MASTER_TOKEN_HASH || null,
   // Session cookie `Secure` flag: on by default in production, where the API is served over HTTPS.
   COOKIE_SECURE: process.env.COOKIE_SECURE ? process.env.COOKIE_SECURE === 'true' : process.env.NODE_ENV === 'production',
+  // Where published desktop UI releases are stored (relative to the backend's working directory).
+  DESKTOP_RELEASES_DIR: process.env.DESKTOP_RELEASES_DIR || 'releases/desktop-ui',
 }

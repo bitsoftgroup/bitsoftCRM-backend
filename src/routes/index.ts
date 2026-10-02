@@ -13,6 +13,7 @@ import settingsRoutes from './settings.js'
 import attendanceRoutes from './attendance.js'
 import reportRoutes from './reports.js'
 import studentPortalRoutes from './studentPortal.js'
+import desktopRoutes from './desktop.js'
 import superadminRoutes from './superadmin.js'
 
 // Mounted at /api/v1 by app.ts.
@@ -40,5 +41,6 @@ router.use('/settings', settingsRoutes)
 router.use('/attendance', attendanceRoutes)
 router.use('/reports', reportRoutes)
 router.use('/portal', studentPortalRoutes)
+router.use('/desktop', desktopRoutes)
 
 export default router

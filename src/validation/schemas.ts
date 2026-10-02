@@ -197,3 +197,12 @@ export type ContractInfoInput = z.infer<typeof contractInfoSchema>
 export type AttendanceQueryInput = z.infer<typeof attendanceQuerySchema>
 export type AttendanceUpsertInput = z.infer<typeof attendanceUpsertSchema>
 export type RecordsQuery = z.infer<typeof recordsQuerySchema>
+
+// Multipart text fields that accompany an uploaded desktop UI release zip.
+export const releasePublishSchema = z.object({
+  notes: z.string().trim().max(2000).default(''),
+  // Oldest desktop shell (main.js / Electron part) that can run this UI.
+  minShellVersion: z.string().regex(/^\d+\.\d+\.\d+$/, 'Use a version like 1.1.0').default('1.1.0'),
+  activate: z.enum(['true', 'false']).default('true').transform((value) => value === 'true'),
+})
+export type ReleasePublishInput = z.infer<typeof releasePublishSchema>

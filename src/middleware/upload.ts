@@ -14,3 +14,9 @@ export const upload = multer({
     cb(null, true)
   },
 })
+
+// Desktop UI releases: a zipped frontend build, held in memory while it is validated.
+export const zipUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 100 * 1024 * 1024, files: 1 },
+})
