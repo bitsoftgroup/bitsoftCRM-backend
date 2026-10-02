@@ -1,51 +1,9 @@
 import { Router } from 'express'
-import { prisma } from '../prisma.js'
-import { asyncHandler } from '../lib/asyncHandler.js'
+import * as studentPortalController from '../controllers/studentPortalController.js'
 
 const router = Router()
 
-const normalizePhone = (phone: unknown) => String(phone ?? '').replace(/\D/g, '').slice(-9)
-
-/**
- * Unauthenticated by design: the student mobile app has no CRM login, so a
- * student/parent is identified by phone number instead of a JWT, mirroring
- * the lookup the app previously did directly against Firebase.
- */
-router.get(
-  '/payments',
-  asyncHandler(async (req, res) => {
-    const phone = normalizePhone(req.query.phone)
-    const parentPhone = normalizePhone(req.query.parentPhone)
-    const candidates = [phone, parentPhone].filter(Boolean)
-    if (candidates.length === 0) {
-      return res.status(400).json({ error: 'phone or parentPhone query param is required' })
-    }
-
-    // With a tenant token the lookup stays inside that center: the same phone number
-    // can exist in two centers, and must not turn into a cross-center "multiple matches".
-    const students = await prisma.student.findMany({
-      where: { deleted: false, ...(req.tenantCenterId ? { educationCenterId: req.tenantCenterId } : {}) },
-      select: { id: true, phone: true, parentPhone: true },
-    })
-    const matches = students.filter((student) => {
-      const studentPhone = normalizePhone(student.phone)
-      const studentParentPhone = normalizePhone(student.parentPhone)
-      return candidates.includes(studentPhone) || candidates.includes(studentParentPhone)
-    })
-
-    if (matches.length > 1) {
-      return res.status(409).json({ error: 'Multiple students matched this phone number' })
-    }
-    if (matches.length === 0) {
-      return res.json([])
-    }
-
-    const payments = await prisma.payment.findMany({
-      where: { studentId: matches[0].id, deleted: false },
-      orderBy: { paidAt: 'desc' },
-    })
-    res.json(payments)
-  }),
-)
+// Unauthenticated by design: see studentPortalService.
+router.get('/payments', studentPortalController.payments)
 
 export default router

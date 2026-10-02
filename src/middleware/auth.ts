@@ -1,21 +1,6 @@
 import type { NextFunction, Request, Response } from 'express'
-import jwt from 'jsonwebtoken'
-import { env } from '../env.js'
-
-export type Role = 'admin' | 'reception' | 'teacher'
-
-export interface AuthTokenPayload {
-  kind: 'user'
-  userId: string
-  educationCenterId: string
-  role: Role
-  teacherId: string | null
-}
-
-export interface SuperAdminTokenPayload {
-  kind: 'superadmin'
-  superAdminId: string
-}
+import { readCookie, SESSION_COOKIE } from '../utils/cookies.js'
+import { verifyToken, type AuthTokenPayload, type Role, type SuperAdminTokenPayload } from '../utils/jwt.js'
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -27,27 +12,29 @@ declare global {
   }
 }
 
-function sign(payload: AuthTokenPayload | SuperAdminTokenPayload): string {
-  const options: jwt.SignOptions = { expiresIn: env.JWT_EXPIRES_IN as jwt.SignOptions['expiresIn'] }
-  return jwt.sign(payload, env.JWT_SECRET, options)
-}
+const SAFE_METHODS = new Set(['GET', 'HEAD', 'OPTIONS'])
 
-export function signToken(payload: Omit<AuthTokenPayload, 'kind'>): string {
-  return sign({ kind: 'user', ...payload })
-}
-
-export function signSuperAdminToken(payload: Omit<SuperAdminTokenPayload, 'kind'>): string {
-  return sign({ kind: 'superadmin', ...payload })
+/** Bearer header first (desktop app, API clients), then the httpOnly session cookie (browser). */
+function extractCredential(req: Request): { token: string; fromCookie: boolean } | null {
+  const header = req.headers.authorization
+  if (header?.startsWith('Bearer ')) return { token: header.slice('Bearer '.length), fromCookie: false }
+  const cookie = readCookie(req, SESSION_COOKIE)
+  return cookie ? { token: cookie, fromCookie: true } : null
 }
 
 export function authenticate(req: Request, res: Response, next: NextFunction) {
-  const header = req.headers.authorization
-  if (!header?.startsWith('Bearer ')) {
+  const credential = extractCredential(req)
+  if (!credential) {
     return res.status(401).json({ error: 'Missing or invalid Authorization header' })
   }
-  const token = header.slice('Bearer '.length)
+  // Cookies are sent by the browser on its own, so a state-changing request authenticated
+  // by one must prove it came from our frontend: a custom header forces a CORS preflight
+  // that other origins cannot pass with credentials.
+  if (credential.fromCookie && !SAFE_METHODS.has(req.method) && req.headers['x-requested-with'] !== 'bitsoftCRM') {
+    return res.status(403).json({ error: 'Missing X-Requested-With header' })
+  }
   try {
-    const payload = jwt.verify(token, env.JWT_SECRET) as AuthTokenPayload | SuperAdminTokenPayload
+    const payload = verifyToken(credential.token)
     if (payload.kind !== 'user') return res.status(401).json({ error: 'Invalid token for this endpoint' })
     // The X-Tenant-Token (resolved earlier by `resolveTenant`) and this user's JWT must
     // agree on the same center, unless the request carries the master tenant token.
@@ -68,7 +55,7 @@ export function authenticateSuperAdmin(req: Request, res: Response, next: NextFu
   }
   const token = header.slice('Bearer '.length)
   try {
-    const payload = jwt.verify(token, env.JWT_SECRET) as AuthTokenPayload | SuperAdminTokenPayload
+    const payload = verifyToken(token)
     if (payload.kind !== 'superadmin') return res.status(401).json({ error: 'Invalid token for this endpoint' })
     req.superAdmin = payload
     next()

@@ -34,7 +34,7 @@ async function buildDesktopApp(centerId: string): Promise<string> {
   // is never shown or returned anywhere — it goes straight into the packaged app's config.
   // Its hash is only stored once the build has succeeded (below): rotating it up front would
   // lock out every already-installed desktop app whenever a rebuild fails.
-  const { generateTenantToken } = await import('./tenantToken.js')
+  const { generateTenantToken } = await import('../utils/tenantToken.js')
   const { token, hash } = generateTenantToken()
 
   writeFileSync(

@@ -160,3 +160,40 @@ export const attendanceUpsertSchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   records: z.record(z.string(), z.enum(['present', 'absent', 'late', 'excused'])),
 })
+
+// Superadmin read-only record lists (paginated, optionally scoped to one center).
+export const recordsQuerySchema = z.object({
+  page: z.coerce.number().int().min(1).max(1000000).default(1),
+  pageSize: z.coerce.number().int().min(1).max(100).default(50),
+  educationCenterId: z.string().uuid().optional(),
+  q: z.string().trim().max(120).default(''),
+})
+
+export const analyticsQuerySchema = z.object({ period: z.enum(['week', 'month', 'year']).default('month') })
+
+export type LoginInput = z.infer<typeof loginSchema>
+export type SuperAdminLoginInput = z.infer<typeof superAdminLoginSchema>
+export type EducationCenterCreateInput = z.infer<typeof educationCenterCreateSchema>
+export type EducationCenterUpdateInput = z.infer<typeof educationCenterUpdateSchema>
+export type StudentCreateInput = z.infer<typeof studentCreateSchema>
+export type StudentUpdateInput = z.infer<typeof studentUpdateSchema>
+export type StudentDeleteInput = z.infer<typeof studentDeleteSchema>
+export type GroupCreateInput = z.infer<typeof groupCreateSchema>
+export type GroupUpdateInput = z.infer<typeof groupUpdateSchema>
+export type CourseCreateInput = z.infer<typeof courseCreateSchema>
+export type CourseUpdateInput = z.infer<typeof courseUpdateSchema>
+export type TeacherCreateInput = z.infer<typeof teacherCreateSchema>
+export type TeacherUpdateInput = z.infer<typeof teacherUpdateSchema>
+export type PaymentCreateInput = z.infer<typeof paymentCreateSchema>
+export type PaymentUpdateInput = z.infer<typeof paymentUpdateSchema>
+export type ContractCreateInput = z.infer<typeof contractCreateSchema>
+export type ContractUpdateInput = z.infer<typeof contractUpdateSchema>
+export type CashExpenseCreateInput = z.infer<typeof cashExpenseCreateSchema>
+export type CashExpenseUpdateInput = z.infer<typeof cashExpenseUpdateSchema>
+export type DiscountsInput = z.infer<typeof discountsSchema>
+export type HolidaysInput = z.infer<typeof holidaysSchema>
+export type RoomsInput = z.infer<typeof roomsSchema>
+export type ContractInfoInput = z.infer<typeof contractInfoSchema>
+export type AttendanceQueryInput = z.infer<typeof attendanceQuerySchema>
+export type AttendanceUpsertInput = z.infer<typeof attendanceUpsertSchema>
+export type RecordsQuery = z.infer<typeof recordsQuerySchema>

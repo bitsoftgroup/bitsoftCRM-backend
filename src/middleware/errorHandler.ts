@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express'
 import multer from 'multer'
 import { Prisma } from '../../generated/prisma/client.js'
 import { ZodError } from 'zod'
-import { HttpError } from '../lib/httpError.js'
+import { HttpError } from '../utils/httpError.js'
 
 export function errorHandler(err: unknown, req: Request, res: Response, _next: NextFunction) {
   if (err instanceof ZodError) {

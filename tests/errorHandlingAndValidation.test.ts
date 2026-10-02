@@ -3,7 +3,7 @@ import test from 'node:test'
 import type { NextFunction, Request, Response } from 'express'
 import multer from 'multer'
 import { Prisma } from '../generated/prisma/client.js'
-import { HttpError } from '../src/lib/httpError.js'
+import { HttpError } from '../src/utils/httpError.js'
 import { errorHandler } from '../src/middleware/errorHandler.js'
 import {
   attendanceQuerySchema,

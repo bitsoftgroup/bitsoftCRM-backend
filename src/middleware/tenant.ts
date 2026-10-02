@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import { prisma } from '../prisma.js'
 import { env } from '../env.js'
-import { hashTenantToken } from '../lib/tenantToken.js'
+import { hashTenantToken } from '../utils/tenantToken.js'
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

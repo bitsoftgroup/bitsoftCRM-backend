@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { analyticsRange, summarizeAnalytics, type AnalyticsDailyRow } from '../src/lib/superadminAnalytics.js'
+import { analyticsRange, summarizeAnalytics, type AnalyticsDailyRow } from '../src/utils/superadminAnalytics.js'
 
 test('week uses seven reporting dates across the local midnight boundary', () => {
   const before = analyticsRange('week', new Date('2026-09-18T18:59:59Z'))
